@@ -1,5 +1,9 @@
 {
-  "version": "0.1.0",
+  "version": "0.0.3",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/btrauma8/jrad-tools"
+  },
   "license": "MIT",
   "main": "dist/index.js",
   "typings": "dist/index.d.ts",
