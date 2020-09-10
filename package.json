@@ -22,7 +22,8 @@
     "prepare": "tsdx build"
   },
   "peerDependencies": {
-    "react": ">=16"
+    "react": ">=16",
+    "rxjs": "^6.5.5"
   },
   "husky": {
     "hooks": {
