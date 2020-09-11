@@ -1,0 +1,5 @@
+.fontSize-xs { font-size: var(--fs-xs); }
+.fontSize-sm { font-size: var(--fs-sm); }
+.fontSize-md { font-size: var(--fs-md); }
+.fontSize-lg { font-size: var(--fs-lg); }
+.fontSize-xl { font-size: var(--fs-xl); }

@@ -1,0 +1,37 @@
+@import './vars/core.css';
+@import './font-size.css';
+
+
+html, body {
+    font-family: Arial;
+    margin:0;
+    padding:0;
+    box-sizing: border-box;
+    font-size:var(--fontSize-md);
+    color: #fff;
+    background-color: #000;
+}
+
+
+/* TODO: add a minimal css reset. include the following... */
+/* not sure if the div one is needed, shouldn't html body have done it? */
+div, textarea, input, td, th { box-sizing: border-box; }
+
+:any-link {
+    color:inherit;
+    text-decoration: inherit;
+}
+
+h1, h2, h3, h4, h5 {
+    display: block;
+    font-size: var(--font-size-xl);
+    color: lime;
+    font-weight: bold;
+    margin: var(--space1) 0;
+}
+
+/* Because this if for phones, just hide scrollbars (you can still scroll with scrollwheel) */
+.hideScrollbars::-webkit-scrollbar { /* applied to both divs and body, possibly */
+	width: 0;
+	background: transparent;
+}
