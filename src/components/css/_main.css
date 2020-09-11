@@ -1,5 +1,7 @@
 @import './vars/core.css';
 @import './font-size.css';
+@import './div-flex.css';
+@import './spacing.css';
 
 
 html, body {
@@ -7,7 +9,7 @@ html, body {
     margin:0;
     padding:0;
     box-sizing: border-box;
-    font-size:var(--fontSize-md);
+    font-size:var(--fs-md);
     color: #fff;
     background-color: #000;
 }
@@ -24,7 +26,7 @@ div, textarea, input, td, th { box-sizing: border-box; }
 
 h1, h2, h3, h4, h5 {
     display: block;
-    font-size: var(--font-size-xl);
+    font-size: var(--fs-xl);
     color: lime;
     font-weight: bold;
     margin: var(--space1) 0;

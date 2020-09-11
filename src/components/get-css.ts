@@ -1,3 +1,5 @@
+import { cssDict } from './css-dict';
+
 const nice = (s:string) => {
     // "100%" should be "100"
     // I'm sure more will come up.
@@ -15,7 +17,7 @@ const toClassName = (k:string, val:any) => {
     if (typeof val !== 'string') { // only translate those with string values (ignore refs)
         return ''; // this catches those undefined guys.
     }
-    return k + '-' + nice(val);
+    return (cssDict.hasOwnProperty(k) ? cssDict[k] : k) + '-' + nice(val);
 }
 
 // I plan on translating some things here.

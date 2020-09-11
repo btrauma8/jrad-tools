@@ -1,0 +1,23 @@
+:root {
+
+    /*
+        follow this format:  (what property you affect) + '-' + (desc)
+        height-top-nav, for example, NOT top-nav-height
+    */
+
+    --fg-default: var(--light-gray7);
+    --fg-faded: var(--light-gray5);
+    --fg-really-faded: var(--light-gray3);
+    --fg-loud: var(--light-gray10);
+    --fg-danger: var(--red5);
+    --fg-accent: var(--green5);
+    --fg-link: var(--blue5);
+
+    --bg-body: var(--gray0);
+    --bg-header: var(--gray4);
+    --bg-card: var(--gray1);
+    --bg-item: var(--gray2);
+    --bg-item-hover: var(--gray4);
+
+    --height-top-nav: 80px;
+}

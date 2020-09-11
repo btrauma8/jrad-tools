@@ -1,0 +1,30 @@
+.display-none { display:none; }
+.display-flex { display:flex; }
+.display-block { display:block; }
+.display-inline-block { display:inline-block; }
+.display-inline-flex { display:inline-flex; }
+.display-inline { display:inline; }
+
+
+.alignItems-center { align-items: center; }
+.alignItems-flex-start { align-items: flex-start; }
+.alignItems-flex-end { align-items: flex-end; }
+.alignItems-stretch { align-items: stretch; }
+
+.justCont-center { justify-content: center; }
+.justCont-flex-start { justify-content: flex-start; }
+.justCont-flex-end { justify-content: flex-end; }
+.justCont-space-between { justify-content: space-between; }
+.justCont-space-evenly { justify-content: space-evenly; }
+.justCont-space-around { justify-content: space-around; }
+
+
+.flex-1 { flex:1 }
+.flex-2 { flex:2 }
+.flex-3 { flex:3 }
+.flex-4 { flex:4 }
+.flex-5 { flex:5 }
+
+.flexDir-column { flex-direction: column; }
+.flexDir-row { flex-direction: row; }
+

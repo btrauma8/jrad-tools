@@ -1,0 +1,83 @@
+:root {
+
+    /*
+        made with colors.html
+        TODO: expand colors.html so that it generates all the core ones.
+        include it within this project.
+        allow click, change theme.
+    */
+
+    /* for fg colors, use dark-gray */
+    --light-gray0:#4b5258;
+    --light-gray1:#616a73;
+    --light-gray2:#78838d;
+    --light-gray3:#8e9ba8;
+    --light-gray4:#a5b4c2;
+    --light-gray5:#bbccdd;
+    --light-gray6:#c3d2e1;
+    --light-gray7:#cbd8e5;
+    --light-gray8:#d3dee9;
+    --light-gray9:#dce4ed;
+    --light-gray10:#e4ebf1;
+
+    /* for bg colors, use gray */
+    --gray0:#303644;
+    --gray1:#3e4758;
+    --gray2:#4c576d;
+    --gray3:#5a6781;
+    --gray4:#697896;
+    --gray5:#7788aa;
+    --gray6:#8796b4;
+    --gray7:#98a5be;
+    --gray8:#a8b3c9;
+    --gray9:#b8c1d3;
+    --gray10:#c9cfdd;
+
+    --blue0:#14305f;
+    --blue1:#1b3e7c;
+    --blue2:#214c98;
+    --blue3:#275ab5;
+    --blue4:#2d69d1;
+    --blue5:#3377ee;
+    --blue6:#4b87f0;
+    --blue7:#6498f2;
+    --blue8:#7ca8f4;
+    --blue9:#95b8f6;
+    --blue10:#adc9f8;
+
+    --yellow0:#5f5814;
+    --yellow1:#7c731b;
+    --yellow2:#988d21;
+    --yellow3:#b5a827;
+    --yellow4:#d1c22d;
+    --yellow5:#eedd33;
+    --yellow6:#f0e14b;
+    --yellow7:#f2e564;
+    --yellow8:#f4e97c;
+    --yellow9:#f6ed95;
+    --yellow10:#f8f1ad;
+
+    --red0:#5f1414;
+    --red1:#7c1b1b;
+    --red2:#982121;
+    --red3:#b52727;
+    --red4:#d12d2d;
+    --red5:#ee3333;
+    --red6:#f04b4b;
+    --red7:#f26464;
+    --red8:#f47c7c;
+    --red9:#f69595;
+    --red10:#f8adad;
+
+    --green0:#144414;
+    --green1:#1b581b;
+    --green2:#216d21;
+    --green3:#278127;
+    --green4:#2d962d;
+    --green5:#33aa33;
+    --green6:#4bb44b;
+    --green7:#64be64;
+    --green8:#7cc97c;
+    --green9:#95d395;
+    --green10:#adddad;
+}
