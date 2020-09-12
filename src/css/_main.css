@@ -1,7 +1,8 @@
-@import './vars/core.css';
+@import './vars/_vars.css';
 @import './font-size.css';
 @import './div-flex.css';
 @import './spacing.css';
+@import './fg-bg.css';
 
 
 html, body {
@@ -10,8 +11,8 @@ html, body {
     padding:0;
     box-sizing: border-box;
     font-size:var(--fs-md);
-    color: #fff;
-    background-color: #000;
+    color: var(--fg-default);
+    background-color: var(--bg-body);
 }
 
 

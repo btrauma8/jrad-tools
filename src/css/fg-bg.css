@@ -1,0 +1,14 @@
+.fg-loud { color: var(--fg-loud); }
+.fg-accent { color: var(--fg-accent); }
+.fg-faded { color: var(--fg-faded); }
+.fg-really-faded { color: var(--fg-really-faded); }
+.fg-default { color: var(--fg-default); }
+.fg-danger { color: var(--fg-danger); }
+.fg-link { color: var(--fg-link); }
+
+
+.bg-body { background-color: var(--bg-body); }
+.bg-header { background-color: var(--bg-header); }
+.bg-card { background-color: var(--bg-card); }
+.bg-item { background-color: var(--bg-item); }
+.bg-item-hover { background-color: var(--bg-item-hover); }
