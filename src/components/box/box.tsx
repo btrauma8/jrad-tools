@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { CSSProperties } from 'react';
 import { getCss } from '../get-css';
 import {
     BgColor,
@@ -12,7 +12,19 @@ import {
     AlignItems
 } from '../types';
 
-interface BoxProps extends BasicSpacingProps {
+export interface BoxProps extends BasicSpacingProps {
+
+
+
+    readonly onClick?:(event:any) => any;
+    readonly onMouseDown?:(event:React.MouseEvent) => any;
+    readonly onMouseUp?:(event:React.MouseEvent) => any;
+    readonly onMouseOver?:(event:React.MouseEvent) => any;
+    readonly onMouseOut?:(event:React.MouseEvent) => any;
+    readonly onAnimationEnd?:(event:React.AnimationEvent) => void;
+    readonly style?:CSSProperties;
+
+
     readonly bg?:BgColor;
     readonly fg?:FgColor;
     readonly fontSize?:FontSize;
@@ -24,8 +36,32 @@ interface BoxProps extends BasicSpacingProps {
     readonly alignItems?:AlignItems;
 
     readonly children?:React.ReactNode;
+    readonly css?:string;
 }
-export const Box = ({ children, ...props }:BoxProps) => {
-    const css = getCss(props);
-    return <div className={css} {...props}>{ children }</div>
-}
+
+export const Box = React.forwardRef(({
+    css,
+    children,
+    onClick,
+    onAnimationEnd,
+    onMouseDown,
+    onMouseUp,
+    onMouseOver,
+    onMouseOut,
+    style,
+    ...props
+}:BoxProps, ref:any) => {
+    return (
+        <div
+            ref={ref}
+            className={getCss(props, css)}
+            onClick={onClick}
+            onMouseDown={onMouseDown}
+            onMouseUp={onMouseUp}
+            onMouseOver={onMouseOver}
+            onMouseOut={onMouseOut}
+            onAnimationEnd={onAnimationEnd}
+            style={style}
+        >{children}</div>
+    )
+})

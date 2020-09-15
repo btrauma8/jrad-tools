@@ -14,10 +14,12 @@
     --fg-link: var(--blue5);
 
     --bg-body: var(--gray0);
-    --bg-header: var(--gray4);
-    --bg-card: var(--gray1);
-    --bg-item: var(--gray2);
-    --bg-item-hover: var(--gray4);
+    --bg-item-disabled: var(--gray1);
+    --bg-header: var(--gray3);
+    --bg-card: var(--gray3);
+    --bg-item: var(--gray4);
+    --bg-item-active: var(--gray5);
+    --bg-item-hover: var(--gray6);
 
     --height-top-nav: 80px;
 }

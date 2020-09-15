@@ -19,6 +19,7 @@ export type BgColor =
     | "header"
     | "card"
     | "item"
+    | "item-disabled"
     | "item-active"
     | "item-hover";
 

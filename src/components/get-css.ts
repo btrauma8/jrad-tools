@@ -36,12 +36,14 @@ export const getCssArrayWithPrefix = (obj:any, prefix:string):string[] => {
     return getCssArray(obj).map(x => prefix + '-' + x);
 }
 
-export const getCss = (obj:any):string|undefined => {
+export const getCss = (obj:any, includeCss?:string):string|undefined => {
     const arr = getCssArray(obj);
+    if (includeCss) arr.push(includeCss);
     return arr.length === 0 ? undefined : arr.join(' ');
 }
 
-export const getCssWithPrefix = (obj:any, prefix:string):string|undefined => {
+export const getCssWithPrefix = (obj:any, prefix:string, includeCss?:string):string|undefined => {
     const arr = getCssArrayWithPrefix(obj, prefix);
+    if (includeCss) arr.push(includeCss);
     return arr.length === 0 ? undefined : arr.join(' ');
 }

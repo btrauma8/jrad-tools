@@ -3,6 +3,7 @@
 @import './div-flex.css';
 @import './spacing.css';
 @import './fg-bg.css';
+@import './grid.css';
 
 
 html, body {

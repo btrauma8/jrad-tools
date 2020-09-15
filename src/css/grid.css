@@ -1,0 +1,11 @@
+.colGap-half { column-gap: var(--sp-half); }
+.colGap-0 { column-gap: 0; }
+.colGap-1 { column-gap: var(--sp-1); }
+.colGap-2 { column-gap: var(--sp-2); }
+.colGap-3 { column-gap: var(--sp-3); }
+
+.rowGap-half { row-gap: var(--sp-half); }
+.rowGap-0 { row-gap: 0; }
+.rowGap-1 { row-gap: var(--sp-1); }
+.rowGap-2 { row-gap: var(--sp-2); }
+.rowGap-3 { row-gap: var(--sp-3); }
