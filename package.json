@@ -22,9 +22,11 @@
     "prepare": "tsdx build"
   },
   "peerDependencies": {
-    "date-fns": "^2.16.1",
     "react": ">=16",
     "rxjs": "^6.5.5"
+  },
+  "dependencies": {
+    "date-fns": "^2.16.1"
   },
   "husky": {
     "hooks": {
