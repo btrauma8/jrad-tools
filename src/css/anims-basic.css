@@ -1,0 +1,25 @@
+@keyframes rotating {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(359deg);
+    }
+}
+.rotating { animation: rotating 2s linear infinite; }
+
+
+/* Animate Dots, imagine "Loading..." with the dots animating in and out, one at a time... */
+@keyframes blink {
+    0% { opacity: .2; }
+    20% { opacity: 1; }
+    100% { opacity: .2; }
+}
+.animate-dots span {
+    animation-name: blink;
+    animation-duration: 1.4s;
+    animation-iteration-count: infinite;
+    animation-fill-mode: both;
+}
+.animate-dots span:nth-child(2) { animation-delay: .2s; }
+.animate-dots span:nth-child(3) { animation-delay: .4s; }

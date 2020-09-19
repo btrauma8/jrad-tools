@@ -1,0 +1,99 @@
+.input {
+    display:inline-block;
+    width: 100%;
+    outline: 0;
+    padding: var(--sp-1);
+    margin: 0;
+    border: 1px solid var(--fg-faded);
+    border-radius: var(--sp--half);
+    font-size: var(--fs-md);
+    background-color: var(--bg-input);
+    color: var(--fg-default);
+    /* font-family: var(--font1); */
+}
+.input::placeholder {
+    color: var(--fg-really-faded);
+}
+
+/* NOTE: i'm being lazy by using important below. rather than having this be more specific for all bg types it could be on */
+.input:read-only,
+.input:read-only:focus
+{
+    color: var(--fg) !important;
+    border: 1px solid transparent !important;
+    background-color: transparent !important;
+}
+
+.input[readonly]::placeholder {
+    font-style:italic;
+}
+
+
+
+/* this is on a label */
+.input-prepend-icon,
+.input-append-icon {
+    position: relative;
+}
+.input-append-icon > input { padding-right: 1.7em; }
+.input-prepend-icon > input { padding-left: 1.7em; }
+
+.input-append-icon > span {
+    position: absolute;
+    display: inline-block;
+    top: 50%;
+    right: var(--sp-1);
+    transform: translateY(-50%);
+}
+.input-prepend-icon > span {
+    position: absolute;
+    display: inline-block;
+    top: 50%;
+    left: var(--sp-1);
+    transform: translateY(-50%);
+}
+
+
+
+/*
+    hide the type="number" thing the browser does automatically
+    But, what about firefox, etc? what is the standard?
+*/
+.input[type=number]::-webkit-inner-spin-button {
+    -webkit-appearance: none; /* why is it called spin-button? this is not a spinner! */
+}
+
+.input[type=number] {
+    text-align:right;
+}
+
+.input.width-100 { width: 100%; }
+.input.width-sm { width: var(--w-input-sm); }
+.input.width-md { width: var(--w-input-md); }
+
+.input.textarea.width-sm { width: var(--w-textarea-sm); }
+.input.textarea.width-md { width: var(--w-textarea-md); }
+
+/* the following should over-rule input[type=number] ... maybe they would without the !important? */
+.input.align-right { text-align:right !important; }
+.input.align-left { text-align:left !important; }
+
+textarea.input { height:100%; }
+textarea.input.height-tall { height: var(--h-textarea-tall); }
+
+.input.size-sm {
+    padding: var(--sp-half);
+    font-size: var(--fs-sm);
+}
+
+.size-sm.input-prepend-icon,
+.size-sm.input-append-icon {
+    /* shrink icon size if input size small */
+    font-size: var(--fs-sm);
+}
+
+.input.textarea {
+    resize:none;
+    height: 5em;
+}
+

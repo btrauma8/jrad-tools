@@ -10,4 +10,35 @@
     --sp-1: 8px;
     --sp-2: 16px;
     --sp-3: 24px;
+
+    /*
+    if (width === 'frm-sm') return 'var(--input-width-frm-sm)';
+    return 'var(--input-width-frm-md)';
+    if (width === 'frm-sm') return 'var(--multi-dropdown-width-frm-sm)';
+    return 'var(--multi-dropdown-width-frm-md)';
+    zIndex: 'var(--zIndex-tooltips)' as any,
+    backgroundColor: 'var(--bg50)',
+    color: 'var(--fg-faded)'
+    backgroundColor: state.isFocused ? 'var(--bg30)' : 'transparent',
+    color: state.isFocused ? 'var(--fg-loud)' : 'var(--fg-faded)'
+    color: disabled ? 'var(--fg-faded)' : 'var(--fg)',
+    paddingLeft: size === 'md' ? 'var(--space1)' : 'var(--space-half)',
+    backgroundColor: 'var(--bg50)',
+    paddingRight: size === 'md' ? 'var(--space1)' : 'var(--space-half)'
+    color: 'var(--fg-really-faded)',
+    backgroundColor: state.isFocused ? 'var(--bg30)' : base.backgroundColor,
+    padding: size === "sm" ? '0 var(--space-half)' : '0 var(--space1)',
+    ...disabled ? { color: 'var(--fg-really-faded)' } : {},
+    ...disabled ? { color: 'var(--fg-really-faded)' } : {},
+    padding: size === "sm" ? '0 var(--space-half)' : '0 var(--space1)',
+    */
+
+    --w-input-sm: 200px;
+    --w-input-md: 400px;
+    --w-multi-dropdown-sm: 200px;
+    --w-multi-dropdown-md: 400px;
+    --w-textarea-sm: 200px;
+    --w-textarea-md: 400px;
+
+    --h-textarea-tall: 300px;
 }

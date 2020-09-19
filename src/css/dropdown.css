@@ -1,0 +1,38 @@
+/*
+
+    When you see "lime" below, it just means that it is NOT used.
+    If you ever end up seeing lime in the dropdown, that's an error.
+    Come here and figure out which one did it.
+
+    NOTE: some of these are over ruled by the theme code in the component, which points some things to css vars directly.
+
+*/
+.m-dd {
+    color: var(--fg-default);  /* this affects the "x" in the multi dropdown selected items */
+
+    --dd-primary: var(--fg-faded); /* input border on focus (same as input, weirdly) */
+
+    --dd-primary75: lime; /* not used? */
+    --dd-primary50: inherit; /* flash bg upon selecting item */
+    --dd-primary25: lime; /* var(--bg30); hover item bg THEME OVERRIDES */
+    --dd-danger:var(--fg-loud); /* fg hover X to remove item */
+    --dd-dangerLight: inherit; /* bg hover X to remove item */
+
+    --dd-neutral0: var(--bg-input); /* MAIN BG INPUT var(--bg20) */
+
+    --dd-neutral5: var(--bg-input-disabled); /* DISABELD BG */
+
+    --dd-neutral10: var(--bg-accent); /* multi item bg */
+
+    --dd-neutral20: var(--fg-faded); /* border color */
+    --dd-neutral30: var(--fg-faded); /* hover border */
+
+    --dd-neutral40: var(--fg-faded); /* disabled top part fg */
+
+    --dd-neutral50: var(--fg-faded); /* placeholder */
+    --dd-neutral60: var(--fg-faded); /* when no options, color of arrow down */
+    --dd-neutral70: lime; /* not used? */
+    --dd-neutral80: var(--fg);  /* current value (in top part)  */
+    
+    --dd-neutral90: lime; /* not used? */
+}

@@ -21,5 +21,23 @@
     --bg-item-active: var(--gray5);
     --bg-item-hover: var(--gray6);
 
+    --bg-input: var(--gray1);
+    --bg-input-focus: var(--gray2);
+    --bg-input-disabled: var(--blue2);
+    --bg-dropdown-menu: var(--gray2);
+    --bg-dropdown-menu-active-item: var(--gray3);
+
     --height-top-nav: 80px;
+
+    --z-ground-floor: 0;
+    --z-tooltips: 50;
+    --z-top-nav-bar: 90;
+    --z-modal: 100;
+    --z-modal-content: 110;
+    --z-confirm-modal: 200;
+    --z-confirm-modal-content: 210;
+
+
+    
+
 }

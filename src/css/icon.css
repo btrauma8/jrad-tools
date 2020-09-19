@@ -1,0 +1,31 @@
+.icon {
+    /* icons outside of buttons must be like divs, for vertically centering correctly */
+    display:block;
+}
+
+.icon.inline {
+    display:inline-block; /* override the default */
+}
+
+.btn > .icon {
+    /* but, icons in buttons, we want them treated as text for consistent button heights */
+    display:inline-block;
+    vertical-align: middle;
+}
+
+/* TODO: ensure this adjustment looks good at bigger button sizes */
+.btn-pad-icon > .icon {
+    margin-left: -0.3em;
+    margin-right: 0.3em;
+}
+
+/* IS THIS USED??? */
+.icon-button-float-right {
+    display:block;
+    float:right;
+    margin-right: calc(var(--space1) * -1.5);
+    margin-top: calc(var(--space1) * -1.5);
+}
+
+.hover-icon-box > svg { visibility: hidden; }
+.hover-icon-box:hover > svg { visibility: visible; }

@@ -48,3 +48,14 @@ export type Flex = "1" | "2" | "3" | "4" | "5";
 export type AlignItems = "center" | "flex-start" | "flex-end" | "stretch";
 export type JustifyContent = "center" | "flex-start" | "flex-end" | "space-between" | "space-evenly" | "space-around";
 export type Display = "flex" | "block" | "inline-block" | "inline-flex" | "inline"| "none";
+
+export type Cursor = "default" | "pointer" | "not-allowed" | "menu" | "move";
+
+export type TextareaSize = "sm" | "md"; // keep em separated (input, textarea)
+export type InputSize = "sm" | "md"; // height AND fontsize (and default widths change too)
+export type InputWidth = "sm" | "md" | "100%";
+
+export type TextAlign = "center" | "left" | "right";
+export type TextareaHeight = "tall";
+export type TextareaWidth = "100%" | "sm" | "md";
+

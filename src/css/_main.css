@@ -4,6 +4,12 @@
 @import './spacing.css';
 @import './fg-bg.css';
 @import './grid.css';
+@import './dropdown.css';
+@import './cursor.css';
+@import './icon.css';
+@import './anims-basic.css';
+@import './input.css';
+@import './text.css';
 
 
 html, body {
