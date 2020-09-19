@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'react';
 import { NamedIconProps } from '../icon/icon';
 
 export const IconStudio = ({ onClick, css }:NamedIconProps) => {
@@ -15,5 +15,5 @@ export const IconStudio = ({ onClick, css }:NamedIconProps) => {
             <path fill="var(--fg-loud)" d="M925 568l0 -424c-443,39 -780,412 -780,856 0,473 381,860 855,860 446,0 816,-347 852,-784l-423 0c-35,205 -215,363 -429,363 -242,0 -435,-198 -435,-439 0,-212 150,-395 360,-432z"/>
 
         </svg>
-    );
+    )
 }

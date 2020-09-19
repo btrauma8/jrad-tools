@@ -1,0 +1,109 @@
+.btn {
+    display:inline;
+    outline: 0 !important;
+    border: 1px solid transparent;
+    color: var(--fg-btn);
+    background-color: var(--bg-btn);
+    border-radius: var(--sp-half);
+    font-size: var(--fs-md);
+    padding: var(--sp-1) var(--sp-2);
+    margin: 0;
+    text-align:center;
+    cursor: pointer;
+}
+.btn:hover {
+    background-color: var(--bg-btn-hover);
+    color: var(--fg-btn-hover);
+    transition: var(--trans-time);
+}
+
+.btn-size-xs {
+    font-size: var(--fs-xs);
+    padding: var(--sp-1) var(--sp-1);
+}
+.btn-size-sm {
+    font-size: var(--fs-sm);
+    padding: var(--sp-1) var(--sp-2);
+}
+.btn-size-md {
+    font-size: var(--font-size-md);
+    padding: var(--space1) var(--space2);
+}
+.btn-size-lg {
+    font-size: var(--fs-lg);
+    padding: var(--sp-1) var(--sp-2);
+}
+.btn-size-xl {
+    font-size: var(--fs-xl);
+    padding: var(--sp-1) var(--sp-3);
+}
+
+
+
+.btn-type-link {
+    border: 1px solid transparent; /* this causes strange things if 0--must be same height, so, transparent */
+    color: var(--fg-default);
+    background-color: var(--bg-btn-link);
+}
+.btn-type-link:hover {
+    background-color: var(--bg-btn-link-hover);
+    color: var(--fg-btn-link-hover);
+}
+
+.btn-type-secondary {
+    background-color: var(--bg-btn-secondary);
+    color: var(--fg-btn-secondary);
+}
+.btn-type-secondary:hover {
+    background-color: var(--bg-btn-secondary-hover);
+    color: var(--fg-btn-secondary-hover);
+}
+
+.btn-type-danger {
+    background-color: var(--bg-btn-danger);
+    color: var(--fg-btn-danger);
+}
+.btn-type-danger:hover {
+    background-color: var(--bg-btn-danger-hover);
+    color: var(--fg-btn-danger-hover);
+}
+
+
+/* disabled */
+.btn-type-disabled,
+.btn-type-disabled:hover {
+    background-color: var(--bg-btn-disabled);
+    color: var(--fg-btn-disabled);
+    cursor:not-allowed;
+}
+
+.btn-mr-1 { display:inline-block; margin-right: var(--sp-1); }
+.btn-mr-2 { display:inline-block; margin-right: var(--sp-2); }
+.btn-mr-3 { display:inline-block; margin-right: var(--sp-3); }
+
+.btn-ml-1 { display:inline-block; margin-left: var(--sp-1); }
+.btn-ml-2 { display:inline-block; margin-left: var(--sp-2); }
+.btn-ml-3 { display:inline-block; margin-left: var(--sp-3); }
+
+
+/* FOR NOW THERE IS JUST ONE KIND OF BUTTON GROUP */
+.btn-group > .btn:not(:first-of-type):not(:last-of-type) {
+    border: 1px solid var(--border-btn-group);
+    border-radius:0;
+    border-right:0;
+}
+.btn-group > .btn:first-of-type {
+    border: 1px solid var(--border-btn-group);
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+    border-right:0;
+}
+.btn-group > .btn:last-of-type {
+    border: 1px solid var(--border-btn-group);
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+}
+
+.btn.icon-button {
+    padding: var(--sp-1) var(--sp-1) !important;
+}

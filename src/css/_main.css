@@ -10,6 +10,11 @@
 @import './anims-basic.css';
 @import './input.css';
 @import './text.css';
+@import './button.css';
+@import './border.css';
+@import './height.css';
+@import './shadow.css';
+@import './modal.css';
 
 
 html, body {

@@ -9,7 +9,16 @@ import {
     Flex,
     FlexDirection,
     Display,
-    AlignItems
+    AlignItems,
+    Cursor,
+    RoundedEdges,
+    Shadow,
+    Overflow,
+    Height,
+    MaxHeight,
+    BorderColor,
+    BorderSides,
+    BorderWidth
 } from '../types';
 
 export interface BoxProps extends BasicSpacingProps {
@@ -35,8 +44,20 @@ export interface BoxProps extends BasicSpacingProps {
     readonly justifyContent?:JustifyContent;
     readonly alignItems?:AlignItems;
 
+    readonly cursor?:Cursor;
+    readonly roundedEdges?:RoundedEdges;
+    readonly shadow?:Shadow;
+
     readonly children?:React.ReactNode;
     readonly css?:string;
+    readonly overflow?:Overflow;
+    readonly overflowX?:Overflow;
+    readonly overflowY?:Overflow;
+    readonly height?:Height;
+    readonly maxHeight?:MaxHeight;
+    readonly borderColor?:BorderColor;
+    readonly borderSides?:BorderSides;
+    readonly borderWidth?:BorderWidth;
 }
 
 export const Box = React.forwardRef(({

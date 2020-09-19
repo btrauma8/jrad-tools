@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'react';
 import { NamedIconProps } from '../icon/icon';
 
 export const IconFontSmaller = ({ onClick, css }:NamedIconProps) => {
@@ -18,7 +18,7 @@ export const IconFontSmaller = ({ onClick, css }:NamedIconProps) => {
             <path d="M476.824,83.201l-25.059,25.059V0h-38.761v108.261l-25.059-25.059l-27.404,27.404l58.142,58.142
                 c3.779,3.779,8.741,5.679,13.702,5.679c4.961,0,9.923-1.899,13.702-5.679l58.142-58.142L476.824,83.201z"/>
         </svg>
-    );
+    )
 }
 
 

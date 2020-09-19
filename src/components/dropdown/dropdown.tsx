@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'react';
 import ReactSelect, { Theme, Styles } from 'react-select';
 import { InputWidth, InputSize } from '../types';
 

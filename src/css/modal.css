@@ -1,0 +1,41 @@
+.confirm-modal-container {
+    display:flex;
+    justify-content: center;
+    align-items: flex-start;
+    position:fixed;
+    top:0;
+    bottom:0;
+    left:0;
+    right:0;
+    z-index: var(--z-confirm-modal);
+}
+
+.modal-container {
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    position:fixed;
+    top:0;
+    bottom:0;
+    left:0;
+    right:0;
+    background-color: var(--modal-trans);
+    z-index: var(--z-modal);
+}
+
+.body-open-modal {
+    overscroll-behavior: contain; /* is this needed? */
+    overflow: hidden;
+}
+
+.modal-scroll-fix {
+    margin-right: var(--scrollbar-thickness);
+}
+
+body.modal-scroll-fix div.pos-fixed-top {
+    margin-right: var(--scrollbar-thickness);
+}
+.modal-width-xl { width: var(--modal-width-xl); }
+.modal-width-lg { width: var(--modal-width-lg); }
+.modal-width-md { width: var(--modal-width-md); }
+.modal-width-sm { width: var(--modal-width-sm); }

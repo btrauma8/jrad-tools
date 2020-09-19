@@ -5,6 +5,8 @@
         height-top-nav, for example, NOT top-nav-height
     */
 
+    --trans-time: 0.2s;
+
     --fg-default: var(--light-gray7);
     --fg-faded: var(--light-gray5);
     --fg-really-faded: var(--light-gray3);
@@ -13,19 +15,47 @@
     --fg-accent: var(--green5);
     --fg-link: var(--blue5);
 
-    --bg-body: var(--gray0);
-    --bg-item-disabled: var(--gray1);
-    --bg-header: var(--gray3);
-    --bg-card: var(--gray3);
-    --bg-item: var(--gray4);
-    --bg-item-active: var(--gray5);
-    --bg-item-hover: var(--gray6);
-
+    --bg-darkest: var(--gray0);
+    --bg-body: var(--gray1);
+    --bg-item-disabled: var(--gray2);
+    --bg-header: var(--gray4);
+    --bg-card: var(--gray4);
+    --bg-item: var(--gray5);
+    --bg-item-active: var(--gray6);
+    --bg-item-hover: var(--gray7);
+    
     --bg-input: var(--gray1);
     --bg-input-focus: var(--gray2);
     --bg-input-disabled: var(--blue2);
     --bg-dropdown-menu: var(--gray2);
     --bg-dropdown-menu-active-item: var(--gray3);
+
+
+    --bg-btn-disabled: var(--bg-item-disabled);
+    --fg-btn-disabled: var(--fg-really-faded);
+
+    --bg-btn: var(--blue5);
+    --fg-btn: var(--blue10);
+    --bg-btn-hover: var(--blue7);
+    --fg-btn-hover: var(--fg-loud);
+
+    --bg-btn-link: transparent;
+    --fg-btn-link: var(--fg-default);
+    --bg-btn-link-hover: var(--gray3);
+    --fg-btn-link-hover: var(--fg-loud);
+
+    --bg-btn-secondary: var(--gray4);
+    --fg-btn-secondary: var(--gray10);
+    --bg-btn-secondary-hover: var(--gray5);
+    --fg-btn-secondary-hover: var(--fg-loud);
+
+    --bg-btn-danger: var(--red3);
+    --fg-btn-danger: var(--red10);
+    --bg-btn-danger-hover: var(--red5);
+    --fg-btn-danger-hover: var(--fg-loud);
+
+
+    --border-btn-group: var(--fg-faded);
 
     --height-top-nav: 80px;
 
@@ -38,6 +68,11 @@
     --z-confirm-modal-content: 210;
 
 
+    --modal-trans: rgba(23, 29, 34, 0.7);
+
+    --scrollbar-thickness: 10px;
+    --scrollbar-track: var(--gray3);
+    --scrollbar-thumb: var(--gray5);
     
 
 }

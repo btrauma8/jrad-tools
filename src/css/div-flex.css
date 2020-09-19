@@ -28,3 +28,14 @@
 .flexDir-column { flex-direction: column; }
 .flexDir-row { flex-direction: row; }
 
+.overflow-hidden { overflow: hidden; }
+.overflow-auto { overflow: auto; }
+.overflow-scroll { overflow: scroll; }
+
+.overflowY-hidden { overflow: hidden; }
+.overflowY-auto { overflow: auto; }
+.overflowY-scroll { overflow: scroll; }
+
+.overflowX-hidden { overflow: hidden; }
+.overflowX-auto { overflow: auto; }
+.overflowX-scroll { overflow: scroll; }

@@ -1,0 +1,10 @@
+.height-auto { height:auto; }
+.height-top-nav { height: var(--h-top-nav); }
+.height-100 { height: 100%; }
+.height-main-section { height: calc(100vh - var(--h-top-nav)); }
+.height-max-h-modal-lg { height: var(--max-h-modal-lg); }
+.height-max-h-modal-md { height: var(--max-h-modal-md); }
+.height-btn-row { height: calc(1em + var(--sp-3)); }
+
+.maxHeight-modal-lg { max-height: var(--max-h-modal-lg); }
+.maxHeight-modal-md { max-height: var(--max-h-modal-md); }

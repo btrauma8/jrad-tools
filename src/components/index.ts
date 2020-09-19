@@ -5,3 +5,7 @@ export * from './input';
 export * from './dropdown/dropdown';
 export * from './icon/icon';
 export * from './big-calendar/big-calendar';
+export * from './checkbox/checkbox';
+export * from './button/button';
+export * from './modal';
+export * from './portal';

@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'react';
 import { NamedIconProps } from '../icon/icon';    
 
 export const IconSettings = ({ onClick, css, title }:NamedIconProps) => {

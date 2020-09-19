@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'react';
 import { BoxProps } from '../box/box';
 import { getCss } from '../get-css';
 import { SpacingSize } from '../types';

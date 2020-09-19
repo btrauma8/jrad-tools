@@ -59,3 +59,24 @@ export type TextAlign = "center" | "left" | "right";
 export type TextareaHeight = "tall";
 export type TextareaWidth = "100%" | "sm" | "md";
 
+
+export type ButtonType = "default" | "link" | "secondary" | "disabled" | "danger";
+export type ButtonSize =  "xs" | "sm" | "md" | "lg" | "xl";
+
+export type RoundedEdges = "all" | "left" | "right" | "top" | "bottom" | "top-right" | "bottom-right" | "top-left" | "bottom-left";
+export type Shadow = "card" | "top-nav";
+
+export type Overflow = "hidden" | "auto" | "scroll";
+export type Height =
+	| "auto"
+	| "100%"
+    | "top-nav"
+    | "main-section"
+	| "max-h-modal-md"
+	| "max-h-modal-lg"
+    | "btn-row";
+export type MaxHeight = "modal-md" | "modal-lg";
+
+export type BorderWidth = "thin" | "thick";
+export type BorderColor = "default" | "secondary" | "transparent";
+export type BorderSides = "all" | "bottom" | "top" | "left" | "right" | "bottom-and-right" | "bottom-right-and-left" | "top-and-left";

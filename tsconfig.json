@@ -12,8 +12,18 @@
     "noUnusedParameters": false,
     "noImplicitReturns": true,
     "noFallthroughCasesInSwitch": true,
+    "allowSyntheticDefaultImports": true,
+    "resolveJsonModule": true,
+    "isolatedModules": true,
     "moduleResolution": "node",
     "jsx": "react",
     "esModuleInterop": true
   }
 }
+
+
+
+
+
+
+

@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'react';
 import { IconClose } from './icon-close';
 import { IconUser } from './icon-user';
 import { IconSave } from './icon-save';

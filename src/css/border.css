@@ -1,0 +1,40 @@
+.borderWidth-thin { border-width: 1px; }
+.borderWidth-thick { border-width: 2px; }
+
+.borderColor-default { border-color: var(--border-default); }
+.borderColor-secondary { border-color: var(--border-secondary); }
+.borderColor-transparent { border-color: transparent; }
+
+.borderSides-all { border-style: solid; }
+.borderSides-all.borderStyle-dashed  { border-style: dashed; }
+
+.borderSides-left { border-left-style: solid; }
+.borderSides-left.borderStyle-dashed { border-left-style: dashed; }
+
+.borderSides-top { border-top-style: solid; }
+.borderSides-top.borderStyle-dashed { border-top-style: dashed; }
+
+.borderSides-top-and-left { border-top-style: solid; border-left-style: solid; }
+.borderSides-top-and-left.borderStyle-dashed { border-top-style: dashed; border-left-style: dashed; }
+
+.borderSides-bottom { border-bottom-style: solid; }
+.borderSides-bottom.borderStyle-dashed { border-bottom-style: dashed; }
+
+.borderSides-bottom-and-right { border-bottom-style: solid; border-right-style: solid; }
+.borderSides-bottom-and-right.borderStyle-dashed { border-bottom-style: dashed; border-right-style: dashed; }
+
+.borderSides-bottom-right-and-left { border-bottom-style: solid; border-right-style: solid; border-left-style: solid; }
+.borderSides-bottom-right-and-left.borderStyle-dashed { border-bottom-style: dashed; border-right-style: dashed; border-left-style: dashed; }
+
+.borderSides-right { border-right-style: solid; }
+.borderSides-right.borderStyle-dashed { border-right-style: dashed; }
+
+.roundedEdges-all { border-radius: var(--sp-half); }
+.roundedEdges-left { border-top-left-radius: var(--sp-half); border-bottom-left-radius: var(--sp-half); }
+.roundedEdges-right { border-top-right-radius: var(--sp-half); border-bottom-right-radius: var(--sp-half); }
+.roundedEdges-top { border-top-left-radius: var(--sp-half); border-top-right-radius: var(--sp-half); }
+.roundedEdges-bottom { border-bottom-left-radius: var(--sp-half); border-bottom-right-radius: var(--sp-half); }
+.roundedEdges-top-left { border-top-left-radius: var(--sp-half); }
+.roundedEdges-bottom-left { border-bottom-left-radius: var(--sp-half); }
+.roundedEdges-top-right { border-top-right-radius: var(--sp-half); }
+.roundedEdges-bottom-right { border-bottom-right-radius: var(--sp-half); }

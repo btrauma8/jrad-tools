@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'react';
 import { TextareaProps } from './index';
 import { getCss } from '../get-css';
 
