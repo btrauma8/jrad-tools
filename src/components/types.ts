@@ -97,3 +97,4 @@ export interface GenericMenuItem<T extends any> {
 }
 
 export type Transition = "default";
+
