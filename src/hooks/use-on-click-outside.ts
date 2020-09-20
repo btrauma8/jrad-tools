@@ -1,4 +1,4 @@
-import { useLayoutEffect } from 'react';
+import * as React from 'react';
 
 export const useOnClickOutside = (elem:HTMLDivElement|null, handler: () => void) => {
 
@@ -8,7 +8,7 @@ export const useOnClickOutside = (elem:HTMLDivElement|null, handler: () => void)
     // or you'll overwrite it wth an old value, etc...
     // it's a lifecycle thing.
 
-    useLayoutEffect(() => {
+    React.useLayoutEffect(() => {
         // console.log('ref or handler changed');
         const listener = (event:MouseEvent | TouchEvent) => {
 

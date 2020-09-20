@@ -7,6 +7,16 @@
 .fg-link { color: var(--fg-link); }
 
 
+.fgHover-loud:hover { color: var(--fg-loud); }
+.fgHover-accent:hover { color: var(--fg-accent); }
+.fgHover-faded:hover { color: var(--fg-faded); }
+.fgHover-really-faded:hover { color: var(--fg-really-faded); }
+.fgHover-default:hover { color: var(--fg-default); }
+.fgHover-danger:hover { color: var(--fg-danger); }
+.fgHover-link:hover { color: var(--fg-link); }
+
+
+
 .bg-body { background-color: var(--bg-body); }
 .bg-header { background-color: var(--bg-header); }
 .bg-card { background-color: var(--bg-card); }

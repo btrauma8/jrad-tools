@@ -18,7 +18,10 @@ import {
     MaxHeight,
     BorderColor,
     BorderSides,
-    BorderWidth
+    BorderWidth,
+    TextStyle,
+    FontWeight,
+    Transition
 } from '../types';
 
 export interface BoxProps extends BasicSpacingProps {
@@ -36,6 +39,7 @@ export interface BoxProps extends BasicSpacingProps {
 
     readonly bg?:BgColor;
     readonly fg?:FgColor;
+    readonly fgHover?:FgColor;
     readonly fontSize?:FontSize;
     
     readonly display?:Display;
@@ -56,8 +60,13 @@ export interface BoxProps extends BasicSpacingProps {
     readonly height?:Height;
     readonly maxHeight?:MaxHeight;
     readonly borderColor?:BorderColor;
+    readonly borderColorHover?:BorderColor;
     readonly borderSides?:BorderSides;
     readonly borderWidth?:BorderWidth;
+    readonly transition?:Transition;
+
+	readonly textStyle?:TextStyle;
+	readonly fontWeight?:FontWeight;
 }
 
 export const Box = React.forwardRef(({

@@ -9,3 +9,8 @@ export * from './checkbox/checkbox';
 export * from './button/button';
 export * from './modal';
 export * from './portal';
+export * from './text/text';
+export * from './tabs';
+export * from './link/link';
+export * from './dots-label/dots-label';
+export * from './divider/divider';

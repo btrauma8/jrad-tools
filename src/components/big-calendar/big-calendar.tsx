@@ -12,8 +12,9 @@ interface CalDay {
 interface BigCalendarProps extends BasicSpacingProps {
     readonly yyyy:number;
     readonly mm:number;
+    readonly noTitle?:boolean;
 }
-export const BigCalendar = ({ yyyy, mm, ...props }:BigCalendarProps) => {
+export const BigCalendar = ({ noTitle, yyyy, mm, ...props }:BigCalendarProps) => {
 
     const startOfMonth = new Date(yyyy, mm, 1);
 
@@ -42,12 +43,9 @@ export const BigCalendar = ({ yyyy, mm, ...props }:BigCalendarProps) => {
         arr.push({ currMonth: false, dt });
     }
     
-    
     return (
         <Box {...props}>
-
-            <Box fg="loud" fontSize="lg" mb="2">{ format(startOfMonth, 'MMMM yyyy') }</Box>
-
+            { !noTitle && <Box fg="loud" fontSize="lg" mb="2">{ format(startOfMonth, 'MMMM yyyy') }</Box> }
             <CssGrid cols={7} colGap="half" rowGap="half">
                 { arr.map((x, n) => (
                     <Box
@@ -59,7 +57,6 @@ export const BigCalendar = ({ yyyy, mm, ...props }:BigCalendarProps) => {
                         style={{ minHeight: '100px' }}
                     >{ getDate(x.dt) }</Box>
                 )) }
-
             </CssGrid>
         </Box>
     )

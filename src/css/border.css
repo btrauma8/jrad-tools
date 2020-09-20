@@ -5,6 +5,10 @@
 .borderColor-secondary { border-color: var(--border-secondary); }
 .borderColor-transparent { border-color: transparent; }
 
+.borderColorHover-default:hover { border-color: var(--border-default); }
+.borderColorHover-secondary:hover { border-color: var(--border-secondary); }
+.borderColorHover-transparent:hover { border-color: transparent; }
+
 .borderSides-all { border-style: solid; }
 .borderSides-all.borderStyle-dashed  { border-style: dashed; }
 

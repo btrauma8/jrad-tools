@@ -80,3 +80,20 @@ export type MaxHeight = "modal-md" | "modal-lg";
 export type BorderWidth = "thin" | "thick";
 export type BorderColor = "default" | "secondary" | "transparent";
 export type BorderSides = "all" | "bottom" | "top" | "left" | "right" | "bottom-and-right" | "bottom-right-and-left" | "top-and-left";
+
+export type FontWeight = "thin" | "normal" | "bold";
+export type TextStyle = "underline" | "italic" | "underline-italic";
+
+
+export interface NavMenuItem {
+	readonly label:React.ReactNode;
+	readonly to:string;
+	readonly exact:boolean;
+	readonly strict:boolean;
+}
+export interface GenericMenuItem<T extends any> {
+	readonly label:React.ReactNode;
+	readonly val:T;
+}
+
+export type Transition = "default";
