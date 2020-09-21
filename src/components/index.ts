@@ -14,3 +14,5 @@ export * from './tabs';
 export * from './link/link';
 export * from './dots-label/dots-label';
 export * from './divider/divider';
+export * from './nav-link/nav-link';
+export * from './top-nav-section/top-nav-section';
