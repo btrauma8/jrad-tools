@@ -91,7 +91,7 @@ export interface NavMenuItem {
 	readonly exact:boolean;
 	readonly strict:boolean;
 }
-export interface GenericMenuItem<T extends any> {
+export interface GenericMenuItem<T = string> { // default type is string for value. but you can override to number. or anything.
 	readonly label:React.ReactNode;
 	readonly val:T;
 }
