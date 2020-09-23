@@ -5,12 +5,13 @@ import { Text } from '../text/text';
 interface Props {
     readonly children:any;
     readonly to:string;
+    readonly exact?:boolean;
     readonly caseSensitive?: boolean;
 }
-export const NavLink = ({ children, to, caseSensitive }:Props) => {
+export const NavLink = ({ children, to, exact, caseSensitive }:Props) => {
 
     const active = useMatch({
-        path: useResolvedPath(to).pathname,
+        path: useResolvedPath(exact ? to : to + '/*').pathname,
         caseSensitive
     })
     //this must take into account * // this is where i stopped.

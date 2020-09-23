@@ -88,6 +88,7 @@ export type TextStyle = "underline" | "italic" | "underline-italic";
 export interface NavMenuItem {
 	readonly label:React.ReactNode;
     readonly to:string;
+    readonly exact?:boolean;
     readonly caseSensitive:boolean;
 }
 export interface GenericMenuItem<T = string> { // default type is string for value. but you can override to number. or anything.

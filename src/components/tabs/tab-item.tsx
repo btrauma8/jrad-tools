@@ -44,7 +44,7 @@ export const NavTabItem = ({ item }:NavTabItemProps) => {
 
 
     const active = useMatch({
-        path: useResolvedPath(item.to).pathname,
+        path: useResolvedPath(item.exact ? item.to : item.to + '/*').pathname,
         caseSensitive: item.caseSensitive
     }) ? true : false;
 
