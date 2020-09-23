@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { useRouteMatch, NavLink as RouterNavLink } from 'react-router-dom';
+import { useMatch, NavLink as RouterNavLink } from 'react-router-dom';
 import { Box } from '../box/box';
 import { NavMenuItem, GenericMenuItem } from '../types';
 
@@ -42,16 +42,22 @@ interface NavTabItemProps {
 }
 export const NavTabItem = ({ item }:NavTabItemProps) => {
 
-    const active:boolean = useRouteMatch({
+
+    const active = useMatch({
         path: item.to,
-        strict: item.strict,
-        exact: item.exact
+        caseSensitive: item.caseSensitive
     }) ? true : false;
+
+    // const active:boolean = useRouteMatch({
+    //     path: item.to,
+    //     strict: item.strict,
+    //     exact: item.exact
+    // }) ? true : false;
 
     if (active) return <ActiveTab label={item.label} />
 
     return (
-        <RouterNavLink to={item.to} exact={item.exact} strict={item.strict} >
+        <RouterNavLink to={item.to} caseSensitive={item.caseSensitive} >
             <Tab label={item.label} />
         </RouterNavLink>
     )

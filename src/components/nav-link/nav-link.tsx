@@ -1,19 +1,17 @@
 import * as React from 'react';
-import { useRouteMatch, NavLink as RouterNavLink } from 'react-router-dom';
+import { NavLink as RouterNavLink, useMatch } from 'react-router-dom';
 import { Text } from '../text/text';
 
 interface Props {
     readonly children:any;
     readonly to:string;
-    readonly strict?: boolean;
-    readonly sensitive?: boolean;
-    readonly exact?: boolean;
+    readonly caseSensitive?: boolean;
 }
-export const NavLink = ({ children, to, exact, ...props }:Props) => {
+export const NavLink = ({ children, to, caseSensitive }:Props) => {
 
-    const active = useRouteMatch({
+    const active = useMatch({
         path: to,
-        strict: exact
+        caseSensitive
     })
 
     return (
@@ -21,6 +19,9 @@ export const NavLink = ({ children, to, exact, ...props }:Props) => {
             fg={active ? 'loud' : 'faded'}
             fgHover={active ? 'loud' : 'link'}
             cursor={active ? 'pointer' : 'default'}
-        ><RouterNavLink to={to} exact={exact} {...props}>{ children }</RouterNavLink></Text>
+        ><RouterNavLink
+            to={to}
+            caseSensitive={caseSensitive}
+        >{ children }</RouterNavLink></Text>
     )
 }
