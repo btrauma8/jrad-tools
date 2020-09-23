@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { useMatch, NavLink as RouterNavLink } from 'react-router-dom';
+import { useMatch, NavLink as RouterNavLink, useResolvedPath } from 'react-router-dom';
 import { Box } from '../box/box';
 import { NavMenuItem, GenericMenuItem } from '../types';
 
@@ -44,7 +44,7 @@ export const NavTabItem = ({ item }:NavTabItemProps) => {
 
 
     const active = useMatch({
-        path: item.to,
+        path: useResolvedPath(item.to).pathname,
         caseSensitive: item.caseSensitive
     }) ? true : false;
 

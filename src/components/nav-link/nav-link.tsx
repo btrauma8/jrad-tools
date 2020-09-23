@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { NavLink as RouterNavLink, useMatch } from 'react-router-dom';
+import { NavLink as RouterNavLink, useMatch, useResolvedPath } from 'react-router-dom';
 import { Text } from '../text/text';
 
 interface Props {
@@ -10,9 +10,10 @@ interface Props {
 export const NavLink = ({ children, to, caseSensitive }:Props) => {
 
     const active = useMatch({
-        path: to,
+        path: useResolvedPath(to).pathname,
         caseSensitive
     })
+    //this must take into account * // this is where i stopped.
 
     return (
         <Text
