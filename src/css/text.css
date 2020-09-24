@@ -1,7 +1,8 @@
-.textAlign-center { text-align: center; }
-.textAlign-left { text-align: left; }
-.textAlign-right { text-align: right; }
+.align-center { text-align: center; }
+.align-left { text-align: left; }
+.align-right { text-align: right; }
 
 .textStyle-italic { font-style: italic; }
 .textStyle-underline { text-decoration: underline; }
 .textStyle-underline-italic { font-style: italic; text-decoration: underline; }
+

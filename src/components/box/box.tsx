@@ -21,7 +21,8 @@ import {
     BorderWidth,
     TextStyle,
     FontWeight,
-    Transition
+    Transition,
+    TextAlign
 } from '../types';
 
 export interface BoxProps extends BasicSpacingProps {
@@ -64,6 +65,7 @@ export interface BoxProps extends BasicSpacingProps {
     readonly borderSides?:BorderSides;
     readonly borderWidth?:BorderWidth;
     readonly transition?:Transition;
+    readonly align?:TextAlign;
 
 	readonly textStyle?:TextStyle;
 	readonly fontWeight?:FontWeight;
