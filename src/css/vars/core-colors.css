@@ -21,6 +21,18 @@
     --light-gray10:#e4ebf1;
 
     /* for bg colors, use gray */
+    --grey0:#242934;
+    --grey1:#2f3643;
+    --grey2:#3a4253;
+    --grey3:#444e62;
+    --grey4:#4f5b72;
+    --grey5:#5a6781;
+    --grey6:#6e7990;
+    --grey7:#828b9f;
+    --grey8:#959eae;
+    --grey9:#a9b0bd;
+    --grey10:#bdc2cd;
+    /*
     --gray0:#303644;
     --gray1:#3e4758;
     --gray2:#4c576d;
@@ -32,6 +44,7 @@
     --gray8:#a8b3c9;
     --gray9:#b8c1d3;
     --gray10:#c9cfdd;
+    */
 
     --blue0:#14305f;
     --blue1:#1b3e7c;

@@ -25,9 +25,9 @@ export const TableLikeCssGrid = ({ children, ...props }:CssGridProps) => {
 }
 
 interface LabelValueGridProps {
-    readonly justifyContent:JustifyContent;
-    readonly alignItems:AlignItems;
-    readonly children:React.ReactNode;
+    readonly justifyContent?:JustifyContent;
+    readonly alignItems?:AlignItems;
+    readonly children?:React.ReactNode;
 }
 export const LabelValueGrid = ({ justifyContent="flex-start", alignItems="center", children }:LabelValueGridProps) => {
     // ALWAYS two columns. That's the point.
