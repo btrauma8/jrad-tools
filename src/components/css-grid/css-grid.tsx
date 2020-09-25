@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { BoxProps } from '../box/box';
 import { getCss } from '../get-css';
-import { SpacingSize } from '../types';
+import { SpacingSize, JustifyContent, AlignItems } from '../types';
 
 interface CssGridProps extends BoxProps {
     readonly cols:number;
@@ -24,15 +24,19 @@ export const TableLikeCssGrid = ({ children, ...props }:CssGridProps) => {
     return <CssGrid justifyContent="flex-start" alignItems="center" {...props}>{ children }</CssGrid>
 }
 
-export const LabelValueGrid = ({ children }:any) => {
-    // ALWAYS two columns
+interface LabelValueGridProps {
+    readonly justifyContent:JustifyContent;
+    readonly alignItems:AlignItems;
+    readonly children:React.ReactNode;
+}
+export const LabelValueGrid = ({ justifyContent="flex-start", alignItems="center", children }:LabelValueGridProps) => {
+    // ALWAYS two columns. That's the point.
     const gridStyle:React.CSSProperties = {
         display: 'grid',
         columnGap: 'var(--sp-1)',
         rowGap: 'var(--sp-1)',
         gridTemplateColumns: 'auto 1fr',
-        justifyContent: 'flex-start',
-        alignItems: 'center'
-    };
-    return <div style={gridStyle}>{ children }</div>;
+    }
+    const css = getCss({ justifyContent, alignItems });
+    return <div style={gridStyle} className={css}>{ children }</div>;
 }
