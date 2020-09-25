@@ -20,18 +20,19 @@
     --light-gray9:#dce4ed;
     --light-gray10:#e4ebf1;
 
-    /* for bg colors, use gray */
-    --gray0:#242934;
-    --gray1:#2f3643;
-    --gray2:#3a4253;
-    --gray3:#444e62;
-    --gray4:#4f5b72;
-    --gray5:#5a6781;
-    --gray6:#6e7990;
-    --gray7:#828b9f;
-    --gray8:#959eae;
-    --gray9:#a9b0bd;
-    --gray10:#bdc2cd;
+
+    /* made with dark-colors.html (not colors.html */
+    --gray0:#1e2023;
+    --gray1:#2a2c31;
+    --gray2:#36393f;
+    --gray3:#42464d;
+    --gray4:#4d525a;
+    --gray5:#595f68;
+    --gray6:#656b76;
+    --gray7:#717884;
+    --gray8:#7d8592;
+    --gray9:#8991a0;
+    --gray10:#959eae;
     /*
     --gray0:#303644;
     --gray1:#3e4758;
