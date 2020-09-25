@@ -42,4 +42,10 @@
 
     --h-textarea-tall: 300px;
     --h-top-nav: 35px;
+
+    --w-modal-xl: 1100px;
+    --w-modal-lg: 900px;
+    --w-modal-md: 640px;
+    --w-modal-sm: 360px;
+
 }

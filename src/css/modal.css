@@ -35,7 +35,8 @@
 body.modal-scroll-fix div.pos-fixed-top {
     margin-right: var(--scrollbar-thickness);
 }
-.modal-width-xl { width: var(--modal-width-xl); }
-.modal-width-lg { width: var(--modal-width-lg); }
-.modal-width-md { width: var(--modal-width-md); }
-.modal-width-sm { width: var(--modal-width-sm); }
+
+.modal-width-xl { width: var(--w-modal-xl); }
+.modal-width-lg { width: var(--w-modal-lg); }
+.modal-width-md { width: var(--w-modal-md); }
+.modal-width-sm { width: var(--w-modal-sm); }
