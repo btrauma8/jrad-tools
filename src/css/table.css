@@ -1,0 +1,96 @@
+.table {
+    border: 0;
+    margin: 0;
+    padding: 0;
+    border-collapse: collapse;
+    border-spacing: 0;
+    width:100%;
+    background-color: var(--table-bg);
+}
+.table th {
+    color: var(--table-th-fg);
+    background-color: var(--table-th-bg);
+    padding: var(--sp-1);
+    margin: 0;
+}
+.table td {
+    color: var(--table-td-fg);
+    background-color: var(--table-td-bg);
+    border-top: 1px solid var(--table-border);
+    border-left: 0;
+    border-right: 0;
+    border-bottom: 0;
+    padding: var(--sp-1);
+    margin: 0;
+}
+.table tbody tr:hover td {
+    background-color: var(--table-td-bg-hover);
+}
+
+.table tbody tr.active td,
+.table tbody tr.active:hover td {
+    background-color: var(--table-tr-active);
+}
+
+.table th.center { text-align: center; }
+.table th.left { text-align: left; }
+.table th.right { text-align: right; }
+
+.table td.center { text-align: center; }
+.table td.left { text-align: left; }
+.table td.right { text-align: right; }
+
+
+.table.table-xs th,
+.table.table-xs td {
+    padding: var(--sp-half);
+    font-size: var(--fs-xs);
+}
+
+.table.table-sm th,
+.table.table-sm td {
+    padding: var(--sp-1);
+    font-size: var(--fs-sm);
+}
+
+
+
+.table.table-no-wrap th,
+.table.table-no-wrap td {
+    white-space: nowrap;
+}
+
+.table.table-bordered {
+    border-collapse:collapse;
+    border-spacing:0;
+    border:1px solid var(--border-secondary);
+}
+.table.table-bordered th,
+.table.table-bordered td {
+    border:1px solid var(--border-secondary);
+}
+
+
+/*
+    Special classes for when we use page sort label,
+    and we want to inherit the left/right/center from the parent th.
+*/
+th.left > .table-page-sort-label { justify-content: flex-start; }
+th.right > .table-page-sort-label { justify-content: center; }
+th.right > .table-page-sort-label { justify-content: flex-end; }
+
+
+.table tr.valign-top td {
+    vertical-align: top;
+}
+
+
+.table tr td.border-right,
+.table tr th.border-right {
+    border-right: 1px solid var(--table-border);
+}
+
+/* for when you click a row, and, a new row shows up under it, diff bg color */
+.table tbody tr.expanded-tr td {
+    background-color: var(--bg10);
+}

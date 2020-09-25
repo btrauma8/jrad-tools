@@ -8,8 +8,8 @@
     --trans-time: 0.2s;
 
     --fg-default: var(--light-gray7);
-    --fg-faded: var(--light-gray5);
-    --fg-really-faded: var(--light-gray3);
+    --fg-faded: var(--light-gray3);
+    --fg-really-faded: var(--light-gray1);
     --fg-loud: var(--light-gray10);
     --fg-danger: var(--red5);
     --fg-accent: var(--green5);
@@ -55,6 +55,8 @@
     --fg-btn-danger-hover: var(--fg-loud);
 
 
+    --border-default: var(--gray2);
+    --border-secondary: var(--gray4);
     --border-btn-group: var(--fg-faded);
 
     --z-ground-floor: 0;
@@ -71,6 +73,15 @@
     --scrollbar-thickness: 10px;
     --scrollbar-track: var(--gray3);
     --scrollbar-thumb: var(--gray5);
-    
+
+
+    --table-bg: var(--bg-header);
+    --table-border: var(--fg-faded);
+    --table-th-fg: var(--fg-faded);
+    --table-th-bg: var(--bg-header);
+    --table-td-fg: var(--fg-default);
+    --table-td-bg: var(--bg-item);
+    --table-td-bg-hover: var(--bg-item-hover);
+    --table-tr-active: var(--bg-item-active);
 
 }
