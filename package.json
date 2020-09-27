@@ -1,5 +1,5 @@
 {
-  "version": "0.0.38",
+  "version": "0.0.39",
   "repository": {
     "type": "git",
     "url": "https://github.com/btrauma8/jrad-tools"
@@ -16,23 +16,24 @@
   },
   "scripts": {
     "start": "tsdx watch",
-    "build": "tsdx build",
+    "build": "tsdx build && yarn copyCss",
     "test": "tsdx test --passWithNoTests",
     "lint": "tsdx lint",
-    "prepare": "tsdx build && yarn copyCss",
+    "removed.prepare": "tsdx build && yarn copyCss",
     "copyCss": "cpy dist/assets/jrad-*.css dist --rename=jrad.css"
   },
   "peerDependencies": {
     "react": ">=16",
     "react-select": "^3.1.0",
-    "rxjs": "^6.5.5",
-    "react-popper": "2.2.3"
+    "rxjs": "^6.5.5"
   },
   "dependencies": {
     "date-fns": "^2.16.1",
     "react-select": "^3.1.0",
     "react-router-dom": "^6.0.0-beta.0",
-    "react-calendar": "3.1.0"
+    "react-calendar": "3.1.0",
+    "react-popper": "2.2.3",
+    "@popperjs/core": "2.5.2"
   },
   "husky": {
     "hooks": {
@@ -67,7 +68,6 @@
     "tslib": "^2.0.1",
     "typescript": "3.9.7",
     "@types/react-calendar": "3.1.1",
-    "@popperjs/core": "2.4.0",
-    "react-popper": "2.2.3"
+    "@popperjs/core": "2.4.0"
   }
 }
