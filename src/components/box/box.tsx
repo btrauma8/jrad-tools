@@ -30,7 +30,7 @@ import {
 export interface BoxProps extends BasicSpacingProps {
 
 
-
+    readonly onRightClick?:(event:any) => any;
     readonly onClick?:(event:any) => any;
     readonly onMouseDown?:(event:React.MouseEvent) => any;
     readonly onMouseUp?:(event:React.MouseEvent) => any;
@@ -79,6 +79,7 @@ export const Box = React.forwardRef(({
     css,
     children,
     onClick,
+    onRightClick,
     onAnimationEnd,
     onMouseDown,
     onMouseUp,
@@ -92,6 +93,7 @@ export const Box = React.forwardRef(({
             ref={ref}
             className={getCss(props, css)}
             onClick={onClick}
+            onContextMenu={onRightClick}
             onMouseDown={onMouseDown}
             onMouseUp={onMouseUp}
             onMouseOver={onMouseOver}
