@@ -1,5 +1,5 @@
 {
-  "version": "0.0.44",
+  "version": "0.0.46",
   "repository": {
     "type": "git",
     "url": "https://github.com/btrauma8/jrad-tools"
@@ -24,7 +24,6 @@
   },
   "peerDependencies": {
     "react": ">=16",
-    "react-select": "^3.1.0",
     "rxjs": "^6.5.5"
   },
   "dependencies": {
