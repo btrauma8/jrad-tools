@@ -5,7 +5,7 @@
     padding: var(--sp-1);
     margin: 0;
     border: 1px solid var(--fg-faded);
-    border-radius: var(--sp-half);
+    border-radius: var(--sp-quarter);
     font-size: var(--fs-md);
     background-color: var(--bg-input);
     color: var(--fg-default);

@@ -5,6 +5,11 @@
     border: 1px solid var(--border-cal-main);
     line-height: 1.125em;
 }
+.react-calendar__navigation {
+    height: 43px; /* was 44 */
+    background-color: var(--bg-cal-header);
+    /* removed margin of 1em (default) */
+}
 .react-calendar__navigation__label {
     font-size: var(--fs-lg)
 }
