@@ -17,7 +17,6 @@
 .fgHover-link:hover { color: var(--fg-link); }
 
 
-
 .bg-body { background-color: var(--bg-body); }
 .bg-header { background-color: var(--bg-header); }
 .bg-card { background-color: var(--bg-card); }
@@ -25,3 +24,11 @@
 .bg-item-active { background-color: var(--bg-item-active); }
 .bg-item-disabled { background-color: var(--bg-item-disabled); }
 .bg-item-hover { background-color: var(--bg-item-hover); }
+
+.bgHover-body:hover { background-color: var(--bg-body); }
+.bgHover-header:hover { background-color: var(--bg-header); }
+.bgHover-card:hover { background-color: var(--bg-card); }
+.bgHover-item:hover { background-color: var(--bg-item); }
+.bgHover-item-active:hover { background-color: var(--bg-item-active); }
+.bgHover-item-disabled:hover { background-color: var(--bg-item-disabled); }
+.bgHover-item-hover:hover { background-color: var(--bg-item-hover); }
