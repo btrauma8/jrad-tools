@@ -7,7 +7,7 @@
 
     --trans-time: 0.2s;
 
-    --fg-default: var(--light-gray6);
+    --fg-default: var(--light-gray5);
     --fg-faded: var(--light-gray3);
     --fg-really-faded: var(--light-gray1);
     --fg-loud: var(--light-gray10);
@@ -22,8 +22,8 @@
     --bg-header: var(--gray3);
     --bg-card: var(--gray4);
     --bg-item: var(--gray4);
-    --bg-item-active: var(--gray6);
-    --bg-item-hover: var(--gray7);
+    --bg-item-active: var(--gray5);
+    --bg-item-hover: var(--gray6);
     
     --bg-input: var(--gray1);
     --bg-input-focus: var(--gray2);

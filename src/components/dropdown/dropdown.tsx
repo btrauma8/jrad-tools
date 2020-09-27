@@ -131,15 +131,15 @@ const setTheme = (th:Theme):Theme => {
     }
 }
 
-export interface DropdownItem {
+export interface DropdownItem<T=string> {
     readonly label: string;
-    readonly value: any;
+    readonly value: T;
 }
 
-type OnChangeSingle = (val:DropdownItem) => any;
-type OnChangeMulti = (vals:Array<DropdownItem>) => any;
+type OnChangeSingle<T=string> = (val:DropdownItem<T>) => any;
+type OnChangeMulti<T=string> = (vals:DropdownItem<T>[]) => any;
 
-export interface DropdownProps {
+export interface DropdownProps<T=string> {
     readonly width?:InputWidth;
     readonly size?:InputSize;
     readonly disabled?:boolean;
@@ -147,9 +147,9 @@ export interface DropdownProps {
     readonly isClearable?:boolean;
     readonly placeholder?: string;
     readonly readonlyPlaceholder?: string;
-    readonly items:Array<DropdownItem>;
-    readonly vals?:Array<any>; // if you want to deal with values as input/output, not label/values
-    readonly value?:DropdownItem | Array<DropdownItem>;
+    readonly items:DropdownItem<T>[];
+    readonly vals?:T[]; // if you want to deal with values as input/output, not label/values
+    readonly value?:DropdownItem<T> | Array<DropdownItem<T>>;
     readonly onChange?: OnChangeSingle | OnChangeMulti;
     readonly setValue?: (x:any) => any; // if you want to deal with values as input/output, not label/values
 }
