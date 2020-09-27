@@ -4,5 +4,6 @@
 
 .textStyle-italic { font-style: italic; }
 .textStyle-underline { text-decoration: underline; }
+.textStyle-underline-on-hover:hover { text-decoration: underline; }
 .textStyle-underline-italic { font-style: italic; text-decoration: underline; }
 

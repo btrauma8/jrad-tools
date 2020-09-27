@@ -83,7 +83,7 @@ export type BorderColor = "default" | "secondary" | "transparent";
 export type BorderSides = "all" | "bottom" | "top" | "left" | "right" | "bottom-and-right" | "bottom-right-and-left" | "top-and-left";
 
 export type FontWeight = "thin" | "normal" | "bold";
-export type TextStyle = "underline" | "italic" | "underline-italic";
+export type TextStyle = "underline" | "italic" | "underline-italic" | "underline-on-hover";
 
 
 export interface NavMenuItem {
