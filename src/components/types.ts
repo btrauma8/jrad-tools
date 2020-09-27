@@ -12,6 +12,7 @@ export type FgColor =
     | "loud"
     | "danger"
     | "accent"
+    | "success"
     | "link";
 
 export type BgColor =

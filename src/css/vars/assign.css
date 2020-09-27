@@ -11,8 +11,9 @@
     --fg-faded: var(--light-gray3);
     --fg-really-faded: var(--light-gray1);
     --fg-loud: var(--light-gray10);
-    --fg-danger: var(--red5);
-    --fg-accent: var(--green5);
+    --fg-danger: var(--red7);
+    --fg-accent: var(--yellow5);
+    --fg-success: var(--green7);
     --fg-link: var(--blue9);
 
     --bg-darkest: var(--gray0);
@@ -92,7 +93,7 @@
     --fg-cal-today: var(--fg-link);
     --bg-cal-hover: var(--bg-item-hover);
     --fg-cal-day-label: var(--fg-faded);
-    --fg-cal-weekend-days: var(--red5);
+    --fg-cal-weekend-days: var(--red10);
     --fg-cal-days-in-neighbor-months: var(--fg-really-faded); 
     --bg-cal-selected-dt: var(--bg-item-active);
     --fg-cal-selected-dt: var(--fg-loud);

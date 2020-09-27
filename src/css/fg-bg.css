@@ -5,6 +5,7 @@
 .fg-default { color: var(--fg-default); }
 .fg-danger { color: var(--fg-danger); }
 .fg-link { color: var(--fg-link); }
+.fg-success { color: var(--fg-success); }
 
 
 .fgHover-loud:hover { color: var(--fg-loud); }
