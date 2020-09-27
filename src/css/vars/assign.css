@@ -69,7 +69,7 @@
     --z-confirm-modal-content: 210;
 
 
-    --modal-trans: rgba(23, 29, 34, 0.7);
+    --modal-trans: rgba(23, 29, 36, 0.4);
 
     --scrollbar-thickness: 10px;
     --scrollbar-track: var(--gray3);
