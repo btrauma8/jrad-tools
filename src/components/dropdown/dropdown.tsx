@@ -152,10 +152,11 @@ export interface DropdownProps<T=string> {
     readonly vals?:T[]; // if you want to deal with values as input/output, not label/values
     readonly value?:DropdownItem<T> | Array<DropdownItem<T>>;
     readonly onChange?: OnChangeSingle | OnChangeMulti;
-    readonly setValue?: (x:any) => any; // if you want to deal with values as input/output, not label/values
+    readonly setValue?: (x:T|null) => void; // if you want to deal with values as input/output, not label/values
+    readonly setValues?: (x:T[]) => void; // if you want to deal with values as input/output, not label/values
 }
 
-export const Dropdown = ({
+export const Dropdown = <T,>({
     size = "md",
     width = "md",
     vals,
@@ -166,18 +167,27 @@ export const Dropdown = ({
     value,
     onChange,
     setValue,
+    setValues,
     isMulti,
     isClearable
-}:DropdownProps) => {
+}:DropdownProps<T>) => {
 
     const _onChange = (x:any) => {
         if (onChange) onChange(x);
-        if (setValue) {
+        if (setValues) {
+            if (!isMulti) throw new Error('setValues should only be used when isMulti is true');
             if (x === null) {
-                setValue(isMulti ? [] : null);
+                setValues([]);
                 return;
             }
-            setValue(isMulti ? (x as DropdownItem[]).map(y => y.value) : x.value);
+            setValues((x as DropdownItem<T>[]).map(y => y.value));
+        } else if (setValue) {
+            if (isMulti) throw new Error('multi should not have setValue, use setValues instead');
+            if (x === null) {
+                setValue(null);
+                return;
+            }
+            setValue(x.value);
         }
     }
 
