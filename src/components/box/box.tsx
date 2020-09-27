@@ -95,7 +95,8 @@ export const Box = React.forwardRef(({
             onClick={onClick}
             onContextMenu={onRightClick ? ev => {
                 onRightClick(ev);
-                return false; // to supress the context menu
+                ev.preventDefault();
+                return false;
             } : undefined}
             onMouseDown={onMouseDown}
             onMouseUp={onMouseUp}
