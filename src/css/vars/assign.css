@@ -7,7 +7,7 @@
 
     --trans-time: 0.2s;
 
-    --fg-default: var(--light-gray7);
+    --fg-default: var(--light-gray6);
     --fg-faded: var(--light-gray3);
     --fg-really-faded: var(--light-gray1);
     --fg-loud: var(--light-gray10);
