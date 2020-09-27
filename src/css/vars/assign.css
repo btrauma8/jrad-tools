@@ -19,9 +19,9 @@
     --bg-darkest: var(--gray0);
     --bg-body: var(--gray1);
     --bg-item-disabled: var(--gray2);
-    --bg-header: var(--gray4);
+    --bg-header: var(--gray3);
     --bg-card: var(--gray4);
-    --bg-item: var(--gray5);
+    --bg-item: var(--gray4);
     --bg-item-active: var(--gray6);
     --bg-item-hover: var(--gray7);
     
