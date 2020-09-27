@@ -11,10 +11,10 @@
     --fg-faded: var(--light-gray3);
     --fg-really-faded: var(--light-gray1);
     --fg-loud: var(--light-gray10);
-    --fg-danger: var(--red7);
-    --fg-accent: var(--yellow5);
-    --fg-success: var(--green7);
-    --fg-link: var(--blue9);
+    --fg-danger: var(--red8);
+    --fg-accent: var(--yellow8);
+    --fg-success: var(--green8);
+    --fg-link: var(--blue10);
 
     --bg-darkest: var(--gray0);
     --bg-body: var(--gray1);
@@ -90,7 +90,7 @@
     --fg-cal-main: var(--fg-default);
     --bg-cal-main: var(--bg-header);
     --border-cal-main: var(--fg-faded);
-    --fg-cal-today: var(--fg-link);
+    --fg-cal-today: var(--fg-accent);
     --bg-cal-hover: var(--bg-item-hover);
     --fg-cal-day-label: var(--fg-faded);
     --fg-cal-weekend-days: var(--red10);
