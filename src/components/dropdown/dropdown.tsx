@@ -28,7 +28,8 @@ const getStuff = (size:InputSize, width:InputWidth, disabled:boolean, isMulti:bo
             return {
                 ...provided,
                 backgroundColor: state.isFocused ? 'var(--bg-dropdown-menu-active-item)' : 'transparent',
-                color: state.isFocused ? 'var(--fg-loud)' : 'var(--fg-faded)'
+                color: state.isFocused ? 'var(--fg-loud)' : 'var(--fg-faded)',
+                cursor: 'pointer'
             }
         },
         multiValueLabel: (base, state) => ({
@@ -132,8 +133,8 @@ const setTheme = (th:Theme):Theme => {
 }
 
 export interface DropdownItem<T=string> {
-    readonly label: string;
-    readonly value: T;
+    readonly label:React.ReactNode;
+    readonly value:T;
 }
 
 type OnChangeSingle<T=string> = (val:DropdownItem<T>) => any;
