@@ -1,16 +1,3 @@
-:root {
-    --fg-cal-main: red;
-    --bg-cal-main: red;
-    --border-cal-main: red;
-    --fg-cal-today: red;
-    --bg-cal-hover: red;
-    --fg-cal-day-label: red;
-    --fg-cal-weekend-days: red;
-    --fg-cal-days-in-neighbor-months: red;    
-    --bg-cal-selected-dt: red;
-    --fg-cal-selected-dt: red;
-}
-
 .react-calendar {
     width: 350px;
     max-width: 100%;
