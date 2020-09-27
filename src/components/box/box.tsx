@@ -93,7 +93,10 @@ export const Box = React.forwardRef(({
             ref={ref}
             className={getCss(props, css)}
             onClick={onClick}
-            onContextMenu={onRightClick}
+            onContextMenu={onRightClick ? ev => {
+                onRightClick(ev);
+                return false; // to supress the context menu
+            } : undefined}
             onMouseDown={onMouseDown}
             onMouseUp={onMouseUp}
             onMouseOver={onMouseOver}
