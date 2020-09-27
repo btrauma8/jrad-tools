@@ -22,7 +22,9 @@ import {
     TextStyle,
     FontWeight,
     Transition,
-    TextAlign
+    TextAlign,
+    Position,
+    ZIndex
 } from '../types';
 
 export interface BoxProps extends BasicSpacingProps {
@@ -37,6 +39,8 @@ export interface BoxProps extends BasicSpacingProps {
     readonly onAnimationEnd?:(event:React.AnimationEvent) => void;
     readonly style?:CSSProperties;
 
+    readonly pos?:Position;
+    readonly z?:ZIndex;
 
     readonly bg?:BgColor;
     readonly fg?:FgColor;

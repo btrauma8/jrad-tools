@@ -17,3 +17,4 @@ export * from './dots-label/dots-label';
 export * from './divider/divider';
 export * from './nav-link/nav-link';
 export * from './top-nav-section/top-nav-section';
+export * from './date-picker/date-picker';

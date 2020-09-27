@@ -98,3 +98,13 @@ export interface GenericMenuItem<T = string> { // default type is string for val
 
 export type Transition = "default";
 
+export type Position = "fixed-top" | "fixed-bottom" | "absolute" | "relative" | "sticky-top-nav";
+
+export type ZIndex =
+	| "ground-floor"
+	| "tooltips"
+	| "modal"
+	| "modal-content"
+	| "confirm-modal"
+	| "confirm-modal-content"
+	| "top-nav-bar"

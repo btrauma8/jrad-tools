@@ -17,6 +17,8 @@
 @import './modal.css';
 @import './font.css';
 @import './table.css';
+@import './position.css';
+@import './z-index.css';
 
 
 html, body {

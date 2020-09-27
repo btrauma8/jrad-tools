@@ -1,5 +1,5 @@
 {
-  "version": "0.0.35",
+  "version": "0.0.36",
   "repository": {
     "type": "git",
     "url": "https://github.com/btrauma8/jrad-tools"
@@ -30,7 +30,9 @@
   "dependencies": {
     "date-fns": "^2.16.1",
     "react-select": "^3.1.0",
-    "react-router-dom": "^6.0.0-beta.0"
+    "react-router-dom": "^6.0.0-beta.0",
+    "react-calendar": "3.1.0",
+    "react-popper": "2.2.3"
   },
   "husky": {
     "hooks": {
@@ -63,6 +65,8 @@
     "rollup-plugin-styles": "3.10.0",
     "tsdx": "^0.13.3",
     "tslib": "^2.0.1",
-    "typescript": "3.9.7"
+    "typescript": "3.9.7",
+    "@types/react-calendar": "3.1.1",
+    "@popperjs/core": "2.4.0"
   }
 }
