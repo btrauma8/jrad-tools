@@ -8,7 +8,7 @@ import { usePopper } from 'react-popper';
 import { Cal } from './cal';
 import { useOnClickOutside } from '../../hooks/use-on-click-outside';
 
-export interface DateInputProps {
+export interface DatePickerProps {
     readonly visibleWhenReadOnly?:boolean; // eventually, this will be the DEFAULT and not an option.
     readonly placeholder?:string;
     readonly readonlyPlaceholder?:string;
@@ -24,7 +24,7 @@ export interface DateInputProps {
     readonly size?:InputSize;
 }
 
-export const DateInput = ({
+export const DatePicker = ({
     width,
     align,
     size,
@@ -37,7 +37,7 @@ export const DateInput = ({
     setValue,
     autoFocus,
     canClear
-}:DateInputProps) => {
+}:DatePickerProps) => {
 
     const [ inputElem, setInputElem ] = useState<HTMLInputElement | null>(null);
     const [ popperElement, setPopperElement ] = useState<HTMLDivElement | null>(null);
