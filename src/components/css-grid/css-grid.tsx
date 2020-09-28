@@ -21,7 +21,7 @@ export const CssGrid = ({ cols, css, children, repeatSize="1fr", ...props }:CssG
 }
 
 export const TableLikeCssGrid = ({ children, ...props }:CssGridProps) => {
-    return <CssGrid justifyContent="flex-start" alignItems="center" {...props}>{ children }</CssGrid>
+    return <CssGrid justifyContent="flex-start" alignItems="center" repeatSize="auto" {...props}>{ children }</CssGrid>
 }
 
 interface LabelValueGridProps {

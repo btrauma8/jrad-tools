@@ -45,6 +45,7 @@ export const BasicInput = React.forwardRef((props:InputProps, ref:React.Ref<HTML
         setValue,
         onEnter,
         onPaste,
+        nullOnEmpty,
         asPassword,
         numeric,
         width = "md",
@@ -77,6 +78,7 @@ export const BasicInput = React.forwardRef((props:InputProps, ref:React.Ref<HTML
 
         if (trimmed === '') {
             setStrValue('');
+            if (nullOnEmpty) next(e, null);
             return;
         }
 
@@ -126,7 +128,11 @@ export const BasicInput = React.forwardRef((props:InputProps, ref:React.Ref<HTML
     const change = (e:React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
         if (numeric) return numericChange(e, numeric);
         // 99% of the time we just want the value. So use setValue!
-        next(e, e.target.value);
+        if (nullOnEmpty && e.target.value.trim() === '') {
+            next(e, null);
+        } else {
+            next(e, e.target.value);
+        }        
     }
 
     const keyDown = (e:React.KeyboardEvent) => {

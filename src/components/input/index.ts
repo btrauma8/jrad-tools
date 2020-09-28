@@ -25,6 +25,7 @@ export interface BasicInputProps {
     readonly width?:InputWidth;
     readonly align?:TextAlign;
     readonly size?:InputSize;
+    readonly nullOnEmpty?:boolean;
 }
 
 export interface InputProps extends BasicInputProps {
