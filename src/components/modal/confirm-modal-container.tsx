@@ -14,6 +14,7 @@ export interface ConfirmModal {
     readonly ok?:() => void;
     readonly cancelLabel?:string;
     readonly cancel?:() => void;
+    readonly noCancel?:boolean;
 }
 
 const _confirmModal = new BehaviorSubject<ConfirmModal | null>(null);
@@ -66,7 +67,7 @@ export const ConfirmModalContainer = () => {
                     borderWidth="thin"
                 >{ cfg.title }</Box>
                 <FlexVCenter justifyContent="flex-end" p="2">
-                    <Button onClick={cancelClk} type="secondary">{ cancelLabel }</Button>
+                    { !cfg.noCancel && <Button onClick={cancelClk} type="secondary">{ cancelLabel }</Button> }
                     <Button ml="1" onClick={okClk} type="default">{ okLabel }</Button>
                 </FlexVCenter>
             </Box>
