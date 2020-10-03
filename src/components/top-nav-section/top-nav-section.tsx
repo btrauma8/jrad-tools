@@ -6,11 +6,6 @@ interface Props {
     readonly fixed?:boolean;
 }
 export const TopNavSection = ({ children, fixed }:Props) => (
-    <Box
-        pos={fixed ? 'fixed-top' : undefined}
-        height="top-nav"
-        bg="header"
-        z="top-nav-bar"
-    >{ children}</Box>
+    <Box pos="relative" z="top-nav-bar"><Box pos={fixed ? 'fixed-top' : undefined} height="top-nav" bg="header">{ children}</Box></Box>
 )
 
