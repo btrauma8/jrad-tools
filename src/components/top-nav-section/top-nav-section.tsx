@@ -10,6 +10,7 @@ export const TopNavSection = ({ children, fixed }:Props) => (
         pos={fixed ? 'fixed-top' : undefined}
         height="top-nav"
         bg="header"
+        z="top-nav-bar"
     >{ children}</Box>
 )
 
