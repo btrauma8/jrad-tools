@@ -77,13 +77,20 @@
     cursor:not-allowed;
 }
 
+.btn-mr-half { display:inline-block; margin-right: var(--sp-half); }
 .btn-mr-1 { display:inline-block; margin-right: var(--sp-1); }
 .btn-mr-2 { display:inline-block; margin-right: var(--sp-2); }
 .btn-mr-3 { display:inline-block; margin-right: var(--sp-3); }
 
+.btn-ml-half { display:inline-block; margin-left: var(--sp-half); }
 .btn-ml-1 { display:inline-block; margin-left: var(--sp-1); }
 .btn-ml-2 { display:inline-block; margin-left: var(--sp-2); }
 .btn-ml-3 { display:inline-block; margin-left: var(--sp-3); }
+
+.btn-mx-half { display:inline-block; margin-left: var(--sp-half); margin-right: var(--sp-half); }
+.btn-mx-1 { display:inline-block; margin-left: var(--sp-1); margin-right: var(--sp-1); }
+.btn-mx-2 { display:inline-block; margin-left: var(--sp-2); margin-right: var(--sp-2); }
+.btn-mx-3 { display:inline-block; margin-left: var(--sp-3); margin-right: var(--sp-3); }
 
 
 /* FOR NOW THERE IS JUST ONE KIND OF BUTTON GROUP */

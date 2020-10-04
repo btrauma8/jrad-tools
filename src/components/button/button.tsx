@@ -29,6 +29,7 @@ export interface ButtonProps {
     readonly mr?:SpacingSize;
     readonly iconMr?:SpacingSize;
     readonly ml?:SpacingSize;
+    readonly mx?:SpacingSize;
     readonly style?:React.CSSProperties;
 }
 export const Button = ({ style, children, onClick, icon, iconMr, busy: isLoading, ...rest }:ButtonProps) => {
