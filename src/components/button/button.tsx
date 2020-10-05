@@ -15,7 +15,7 @@ const getIconButtonCss = (iconName:IconName | null, children?:any) => {
 const getIconMarginRight = (size?:ButtonSize, iconMr?:SpacingSize, children?:any):SpacingSize => {
     if (iconMr) return iconMr;
     if (!children) return '0';
-    if (size === 'sm') return 'half';
+    if (size === 'sm' || size === 'xs') return 'half';
     return '1';
 }
 
