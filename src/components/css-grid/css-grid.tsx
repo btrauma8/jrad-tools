@@ -28,15 +28,21 @@ interface LabelValueGridProps {
     readonly justifyContent?:JustifyContent;
     readonly alignItems?:AlignItems;
     readonly children?:React.ReactNode;
+    readonly mt?:SpacingSize;
+    readonly mb?:SpacingSize;
+    readonly my?:SpacingSize;
+    readonly mx?:SpacingSize;
+    readonly mr?:SpacingSize;
+    readonly ml?:SpacingSize;
 }
-export const LabelValueGrid = ({ justifyContent="flex-start", alignItems="center", children }:LabelValueGridProps) => {
-    // ALWAYS two columns. That's the point.
+export const LabelValueGrid = ({ justifyContent="flex-start", alignItems="center", children, ...props }:LabelValueGridProps) => {
+    // ALWAYS two columns. That's the point.    
     const gridStyle:React.CSSProperties = {
         display: 'grid',
         columnGap: 'var(--sp-1)',
         rowGap: 'var(--sp-1)',
         gridTemplateColumns: 'auto 1fr',
     }
-    const css = getCss({ justifyContent, alignItems });
+    const css = getCss({ justifyContent, alignItems, ...props });
     return <div style={gridStyle} className={css}>{ children }</div>;
 }
