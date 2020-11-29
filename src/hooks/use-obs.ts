@@ -1,5 +1,14 @@
 import * as React from 'react';
-import { Observable } from 'rxjs';
+import { Observable, BehaviorSubject } from 'rxjs';
+
+export const useBs = <T>(bs:BehaviorSubject<T>):T => {
+    const [ val, setVal ] = React.useState<T>(bs.getValue());
+    React.useEffect(() => {
+        const sub = bs.subscribe(setVal);
+        return () => sub.unsubscribe();
+    }, [])
+    return val;
+}
 
 export const useObs = <T>(obs:Observable<T>):T | undefined => {
     const [ val, setVal ] = React.useState<T>();
