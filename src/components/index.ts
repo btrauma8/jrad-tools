@@ -18,3 +18,7 @@ export * from './divider/divider';
 export * from './nav-link/nav-link';
 export * from './top-nav-section/top-nav-section';
 export * from './date-picker/date-picker';
+export * from './sortable-table-header/sortable-table-header';
+export * from './button-group/button-group';
+export * from './table-page-buttons/table-page-buttons';
+export * from './page-sort-label/page-sort-label';
