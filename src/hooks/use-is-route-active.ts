@@ -1,5 +1,5 @@
-import { useMatch as reactRouterUseMatch, useResolvedPath } from 'react-router-dom';
-import { getMergedPath } from './route-helper';
+import { useMatch as reactRouterUseMatch } from 'react-router-dom';
+import { useResolveTo } from './use-resolve-to';
 
 export const useIsRouteActive = (to:string, exact?:boolean, caseSensitive?:boolean) => {
 
@@ -7,7 +7,7 @@ export const useIsRouteActive = (to:string, exact?:boolean, caseSensitive?:boole
 
     return reactRouterUseMatch({
         // path: useResolvedPath(exact ? path : path + '/*').pathname,
-        path: useResolvedPath(exact ? to : to + '/*'),
+        path: useResolveTo(exact ? to : to + '/*'),
         caseSensitive: caseSensitive
     }) ? true : false;
 
