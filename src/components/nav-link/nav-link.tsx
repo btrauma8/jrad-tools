@@ -1,6 +1,7 @@
 import * as React from 'react';
-import { NavLink as RouterNavLink, useMatch, useResolvedPath } from 'react-router-dom';
+import { NavLink as RouterNavLink } from 'react-router-dom';
 import { Text } from '../text/text';
+import { useIsRouteActive, getMergedPath } from '../../hooks';
 
 interface Props {
     readonly children:any;
@@ -10,10 +11,13 @@ interface Props {
 }
 export const NavLink = ({ children, to, exact, caseSensitive }:Props) => {
 
-    const active = useMatch({
-        path: useResolvedPath(exact ? to : to + '/*').pathname,
-        caseSensitive
-    })
+
+    const active = useIsRouteActive(to, exact, caseSensitive);
+
+    // const active = useMatch({
+    //     path: useResolvedPath(exact ? to : to + '/*').pathname,
+    //     caseSensitive
+    // })
     //this must take into account * // this is where i stopped.
 
     return (
@@ -22,7 +26,7 @@ export const NavLink = ({ children, to, exact, caseSensitive }:Props) => {
             fgHover={active ? 'loud' : 'link'}
             cursor={active ? 'pointer' : 'default'}
         ><RouterNavLink
-            to={to}
+            to={getMergedPath(to)}
             caseSensitive={caseSensitive}
         >{ children }</RouterNavLink></Text>
     )
