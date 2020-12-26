@@ -16,6 +16,7 @@ const stripLeadingForwardSlash = (s:string) => {
 
 export const getMergedPath = (path:string) => {
     if (!basePath) return path;
+    
     return basePath + stripLeadingForwardSlash(path);
 }
 

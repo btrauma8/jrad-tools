@@ -2,7 +2,7 @@ import * as React from 'react';
 import { NavLink as RouterNavLink } from 'react-router-dom';
 import { Box } from '../box/box';
 import { NavMenuItem, GenericMenuItem } from '../types';
-import { useIsRouteActive, getMergedPath } from '../../hooks';
+import { useIsRouteActive, getMergedPath, useResolveTo } from '../../hooks';
 
 interface Tab {
     readonly label:React.ReactNode;
@@ -45,6 +45,7 @@ export const NavTabItem = ({ item }:NavTabItemProps) => {
 
 
     const active = useIsRouteActive(item.to, item.exact, item.caseSensitive)
+    const resolvedTo = useResolveTo(item.to);
 
     // const active = useMatch({
     //     path: useResolvedPath(item.exact ? item.to : item.to + '/*').pathname,
@@ -60,7 +61,7 @@ export const NavTabItem = ({ item }:NavTabItemProps) => {
     if (active) return <ActiveTab label={item.label} />
 
     return (
-        <RouterNavLink to={getMergedPath(item.to)} caseSensitive={item.caseSensitive} >
+        <RouterNavLink to={resolvedTo} caseSensitive={item.caseSensitive} >
             <Tab label={item.label} />
         </RouterNavLink>
     )

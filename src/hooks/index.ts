@@ -6,3 +6,4 @@ export * from './use-previous';
 export * from './use-nav';
 export * from './use-is-route-active';
 export * from './route-helper';
+export * from './use-resolve-to';
