@@ -9,6 +9,8 @@ export const setRouterBasePath = (path:string) => {
     basePath = path;
 }
 
+export const getRouterBasePath = () => basePath;
+
 const stripLeadingForwardSlash = (s:string) => {
     if (s.length === 0) return s;
     return s[0] === '/' ? s.substr(1) : s;
@@ -16,7 +18,7 @@ const stripLeadingForwardSlash = (s:string) => {
 
 export const getMergedPath = (path:string) => {
     if (!basePath) return path;
-    
+
     return basePath + stripLeadingForwardSlash(path);
 }
 
