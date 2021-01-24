@@ -4,7 +4,7 @@ const set = (key:string, val:any) => {
     localStorage[key] = JSON.stringify(val);
 }
 
-const get = <T>(key:string):T|undefined => {
+export const getStickyVal = <T>(key:string):T|undefined => {
     try {
         const result:T = JSON.parse(localStorage[key]);
         return result;
@@ -13,10 +13,11 @@ const get = <T>(key:string):T|undefined => {
     }
 }
 
-export const useStickyStateWithDefault = <T>(key:string, defaultVal:T):[T, (x:T) => void] => {
+
+export const useStickyState = <T>(key:string, defaultVal:T):[T, (x:T) => void] => {
 
     const [ val, setVal ] = useState<T>(() => {
-        return get(key) ?? defaultVal;
+        return getStickyVal(key) ?? defaultVal;
     })
 
     return [
