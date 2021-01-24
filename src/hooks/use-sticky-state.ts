@@ -1,18 +1,21 @@
 import { useState } from 'react';
 
-const set = (key:string, val:any) => {
-    localStorage[key] = JSON.stringify(val);
+let stickyPrefix = '';
+
+export const setStickyPrefix = (s:string) => stickyPrefix = s;
+
+export const setStickyVal = (key:string, val:any) => {
+    localStorage[stickyPrefix + key] = JSON.stringify(val);
 }
 
 export const getStickyVal = <T>(key:string):T|undefined => {
     try {
-        const result:T = JSON.parse(localStorage[key]);
+        const result:T = JSON.parse(localStorage[stickyPrefix + key]);
         return result;
     } catch (err) {
         return undefined;
     }
 }
-
 
 export const useStickyState = <T>(key:string, defaultVal:T):[T, (x:T) => void] => {
 
@@ -23,7 +26,7 @@ export const useStickyState = <T>(key:string, defaultVal:T):[T, (x:T) => void] =
     return [
         val,
         (x:T) => {
-            set(key, x);
+            setStickyVal(key, x);
             setVal(x)
         }
     ]
