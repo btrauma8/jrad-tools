@@ -19,7 +19,7 @@
 
 .btn-size-xs {
     font-size: var(--fs-xs);
-    padding: var(--sp-1) var(--sp-1);
+    padding: var(--sp-half) var(--sp-1);
 }
 .btn-size-sm {
     font-size: var(--fs-sm);
