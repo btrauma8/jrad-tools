@@ -12,4 +12,5 @@ export * from './use-safe-state';
 export * from './use-is-gone';
 export * from './use-sticky-state';
 export * from './use-graceful-busy';
+export * from './use-debounce';
 
