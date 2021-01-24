@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { NavLink as RouterNavLink } from 'react-router-dom';
-import { Text } from '../text/text';
 import { useIsRouteActive, useResolveTo } from '../../hooks';
+import { Link } from '../link/link';
 
 interface Props {
     readonly children:any;
@@ -25,13 +25,11 @@ export const NavLink = ({ children, to, exact, caseSensitive }:Props) => {
     // "/bp2/../rt"
 
     return (
-        <Text
-            fg={active ? 'loud' : 'faded'}
-            fgHover={active ? 'loud' : 'link'}
-            cursor={active ? 'pointer' : 'default'}
-        ><RouterNavLink
-            to={resolvedTo}
-            caseSensitive={caseSensitive}
-        >{ children }</RouterNavLink></Text>
+        <Link active={active}>
+            <RouterNavLink
+                to={resolvedTo}
+                caseSensitive={caseSensitive}
+            >{ children }</RouterNavLink>
+        </Link>
     )
 }

@@ -1,7 +1,17 @@
 import * as React from 'react';
 import { Text, TextProps } from '../text/text';
 
-export const Link = (props:TextProps) => {
+interface LinkProps extends TextProps{
+    readonly active?:boolean;
+}
+export const Link = ({ active, ...props }:LinkProps) => {
     // We invert the colors for some menus
-    return <Text cursor="pointer" fg="link" fgHover="loud" {...props} />
+
+    // This should match what we see in <NavLink>
+    return <Text
+        fg={active ? 'loud' : 'faded'}
+        fgHover={active ? 'loud' : 'link'}
+        cursor={active ? 'pointer' : 'default'}
+        {...props}
+    />
 }
