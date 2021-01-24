@@ -11,7 +11,7 @@ export const Link = ({ active, ...props }:LinkProps) => {
     return <Text
         fg={active ? 'loud' : 'faded'}
         fgHover={active ? 'loud' : 'link'}
-        cursor={active ? 'pointer' : 'default'}
+        cursor={active ? 'default' : 'pointer'}
         {...props}
     />
 }
