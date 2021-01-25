@@ -232,9 +232,10 @@ export class RealTimerClient {
     public doesChannelExist(channelId:string) {
         return this.channels.has(channelId);
     }
+
     public getLastChannelValue(channelId:string) {
         const ch = this.channels.get(channelId);
-        if (ch) return ch.state.getValue();
+        return ch?.state.getValue();
     }
 
     public joinChannel<Msg={}>(channelId:string, params:any={}, modifyFn?:(x:any) => Msg|null|undefined):Observable<ChannelState<Msg>> {
