@@ -30,6 +30,8 @@ export const useCloudFileDbApi = <DocType = {}>({
     const [ foldersAndFiles, setFoldersAndFiles ] = useState<FoldersAndFilesList>();
     const [ docIds, setDocIds ] = useState<string[]>();
     const [ pingResult, setPingResult ] = useState<string>();
+    const [ restartServerResult, setRestartServerResult ] = useState<any>();
+
     const [ fetching, setFetching ] = useState<boolean>(() => {
         // we might be fetching initially.
         if (appAndDocId) return true;
@@ -233,6 +235,23 @@ export const useCloudFileDbApi = <DocType = {}>({
         })
     }
 
+    const restartServer = () => {
+        if (sub.current) sub.current.unsubscribe();
+        if (canceled.current) return;
+        setFetching(true);
+        setErr('');
+        sub.current = api.masterRestart(token).subscribe(x => {
+            if (canceled.current) return;
+            setFetching(false);
+            if (!x.err && x.data) {
+                setRestartServerResult(x.data);
+            } else {
+                setErr('could not restart server');
+                setRestartServerResult(undefined);
+            }
+        })
+    }
+
     const listFoldersAndFiles = () => {
         if (sub.current) sub.current.unsubscribe();
         if (canceled.current) return;
@@ -279,6 +298,8 @@ export const useCloudFileDbApi = <DocType = {}>({
         updating,
         foldersAndFiles,
         listFoldersAndFiles,
+        restartServer,
+        restartServerResult,
         pingResult,
         pingServer,
         docContents,
