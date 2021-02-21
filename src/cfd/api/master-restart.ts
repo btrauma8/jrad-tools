@@ -2,12 +2,8 @@ import { Observable } from 'rxjs';
 import { switchMap } from 'rxjs/operators';
 import { fromFetch } from 'rxjs/fetch';
 import { cfg } from '../cfg';
-import { ApiResult } from '../types';
 
-export interface MasterRestartProps {
-    readonly token:string;
-}
-export const masterRestart = <T = {}>({ token }:MasterRestartProps):Observable<ApiResult<T>> => {
+export const masterRestart =(token:string):Observable<any> => {
     // debugging only. this restarts app.
     return fromFetch(cfg.apiBaseUrl, {
         method: 'POST',
