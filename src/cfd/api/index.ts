@@ -15,3 +15,4 @@ export * from './master-set-doc';
 export * from './master-insert-doc';
 export * from './master-delete-doc';
 export * from './master-create-folder';
+export * from './master-restart';
