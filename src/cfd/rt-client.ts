@@ -11,6 +11,7 @@ const ONE_HOUR = ONE_MIN * 60;
 const FIVE_HOURS = ONE_HOUR * 5;
 const RECONNECT_IF_DISCONNECTED_AND_LAST_ACTION_WITHIN_X_MS = FIVE_HOURS;
 const RECONNECT = false;
+const MAX_RETRIES = 20;
 
 export interface RTPushMsg {
     readonly channelId:string;
@@ -63,6 +64,7 @@ export class RealTimerClient {
     private channels:Map<string, ChannelConfig<any>>;
     public ready:BehaviorSubject<boolean>;
     private lastMsgReceived:number;
+    private retryCount:number;
 
     constructor(url:string, log?:(...args:string[]) => void) {
         this.url = url;
@@ -70,6 +72,7 @@ export class RealTimerClient {
         this.channels = new Map<string, ChannelConfig<any>>();
         this.log = log ?? noop;
         this._incoming = new Subject<any>();
+        this.retryCount = 0;
         this.ws = null;
         this.ready = new BehaviorSubject<boolean>(false);
         this.connect();
@@ -127,21 +130,21 @@ export class RealTimerClient {
         return x;
     }
 
-    private reconnect() {
-        if (!RECONNECT) return;
-        if (!this.ws) {
-            this.connect();
-            return;
-        }
-        const { readyState } = this.ws;
-        // four readyState values: CONNECTING, OPEN, CLOSING, CLOSED
-        if (readyState === this.ws.OPEN || readyState === this.ws.CONNECTING) {
-            this.log('--- be patient, do not reconnect, we are still attempting a connection');
-            return;
-        }
-        this.log('RT ---> Reconnecting ws because we were: ' + readyState);
-        this.connect();
-    }
+    // private reconnect() {
+    //     if (!RECONNECT) return;
+    //     if (!this.ws) {
+    //         this.connect();
+    //         return;
+    //     }
+    //     const { readyState } = this.ws;
+    //     // four readyState values: CONNECTING, OPEN, CLOSING, CLOSED
+    //     if (readyState === this.ws.OPEN || readyState === this.ws.CONNECTING) {
+    //         this.log('--- be patient, do not reconnect, we are still attempting a connection');
+    //         return;
+    //     }
+    //     this.log('RT ---> Reconnecting ws because we were: ' + readyState);
+    //     this.connect();
+    // }
 
     private connect() {
         // YOU ONLY EVER CONNECT ONCE (reconnect in the future version)
@@ -149,6 +152,7 @@ export class RealTimerClient {
         this.ws = new WebSocket(this.url);
         this.ws.onopen = (evt:any) => {
             this.log('>> RT CONN OPENED');
+            this.retryCount = 0;
             this.ready.next(true);
             // Any channels that already exist...must be join server
             this.channels.forEach(channel => {
@@ -173,8 +177,13 @@ export class RealTimerClient {
             this.ready.next(false);
             // We should try to re-connect.
             const msSinceLastAction = Date.now() - this.lastMsgReceived;
-            if (RECONNECT && msSinceLastAction < RECONNECT_IF_DISCONNECTED_AND_LAST_ACTION_WITHIN_X_MS) {
-                this.connect();
+            
+            if (msSinceLastAction < RECONNECT_IF_DISCONNECTED_AND_LAST_ACTION_WITHIN_X_MS && this.retryCount < MAX_RETRIES) {
+                setTimeout(() => {
+                    // pause, then, reconnect
+                    this.retryCount++;
+                    this.connect();
+                }, 300 + (this.retryCount * 100));
             } else {
                 // It's over. we are done.
                 // tell all channels, we are done.
@@ -251,8 +260,8 @@ export class RealTimerClient {
         this.channels.set(channelId, newChannel);
         if (this.webSocketReady()) {
             this.requestJoinChannel(channelId, params);
-        } else {
-            this.reconnect();
+        // } else {
+            // this.reconnect();
         }
         return newChannel.state.asObservable() as Observable<ChannelState<Msg>>;
     }
