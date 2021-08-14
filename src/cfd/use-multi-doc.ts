@@ -60,11 +60,12 @@ export const useMultiDoc = <T extends MultiDocHookProp>({ stateId }:{ stateId:st
     }
 
     const joinAsNewUser = (docId:string, initUserData?:any) => {
+        const trimmedUpperDocId = docId.trim().toUpperCase();
         setJoiningAsNewUser(true);
         if (apiSub.current) apiSub.current.unsubscribe();
         apiSub.current = joinMultiUserDoc({
             app: cfg.app,
-            docId,
+            docId: trimmedUpperDocId,
             token: cfg.token,
             initUserData
         }).subscribe(res => {
@@ -81,7 +82,7 @@ export const useMultiDoc = <T extends MultiDocHookProp>({ stateId }:{ stateId:st
                 if (!isCanceled.current) setJoiningAsNewUser(false);
                 return;
             }
-            setDocIdAndUserId(stateId, { docId, userId });
+            setDocIdAndUserId(stateId, { docId: trimmedUpperDocId, userId });
             if (!isCanceled.current) setJoiningAsNewUser(false);
         })
     }
