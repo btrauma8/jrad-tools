@@ -59,7 +59,7 @@ export const useMultiDoc = <T extends MultiDocHookProp>({ stateId }:{ stateId:st
         if (docId) stopListeningToDoc(docId, userId);
     }
 
-    const joinAsNewUser = (docId:string, initUserData?:any) => {
+    const joinAsNewUser = (docId:string, initUserData:UserData) => {
         const trimmedUpperDocId = docId.trim().toUpperCase();
         setJoiningAsNewUser(true);
         if (apiSub.current) apiSub.current.unsubscribe();
