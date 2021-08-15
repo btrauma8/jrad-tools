@@ -25,6 +25,7 @@ export const useMultiDoc = <T extends MultiDocHookProp>({ stateId }:{ stateId:st
     const rtc = cfg.rtc;
 
     const [ updating, setUpdating ] = useState<boolean>(false);
+    const [ lastJoinResult, setLastJoinResult ] = useState<""|"failure"|"success">("");
     const [ joiningAsNewUser, setJoiningAsNewUser ] = useState<boolean>(false);
     const [ creatingNewMultiUserDoc, setCreatingNewMultiUserDoc ] = useState<boolean>(false);
     const [ channelState, setChannelState ] = useState<FullChannel<DocData,PublicView,UserData,UserView>>(() => {
@@ -56,6 +57,7 @@ export const useMultiDoc = <T extends MultiDocHookProp>({ stateId }:{ stateId:st
         const { docId, userId } = getLastDocIdAndUserIdByStateId(stateId) ?? {};
         console.log('logout', docId, userId);
         setDocIdAndUserId(stateId, {});
+        setLastJoinResult("");
         if (docId) stopListeningToDoc(docId, userId);
     }
 
@@ -72,6 +74,7 @@ export const useMultiDoc = <T extends MultiDocHookProp>({ stateId }:{ stateId:st
             if (res.err || !res.data) {
                 console.log('error joining mu-doc');
                 setDocIdAndUserId(stateId, {});
+                setLastJoinResult("failure");
                 if (!isCanceled.current) setJoiningAsNewUser(false);
                 return;
             }
@@ -79,10 +82,12 @@ export const useMultiDoc = <T extends MultiDocHookProp>({ stateId }:{ stateId:st
             if (!userId) {
                 console.log('error joining mu-doc, missing userId');
                 setDocIdAndUserId(stateId, {});
+                setLastJoinResult("failure");
                 if (!isCanceled.current) setJoiningAsNewUser(false);
                 return;
             }
             setDocIdAndUserId(stateId, { docId: trimmedUpperDocId, userId });
+            setLastJoinResult("success");
             if (!isCanceled.current) setJoiningAsNewUser(false);
         })
     }
@@ -103,12 +108,14 @@ export const useMultiDoc = <T extends MultiDocHookProp>({ stateId }:{ stateId:st
             if (res.err || !res.data) {
                 console.log('error creating new mu-doc');
                 setDocIdAndUserId(stateId, {});
+                setLastJoinResult("failure");
                 if (!isCanceled.current) setCreatingNewMultiUserDoc(false);
                 return;
             }
             const { docId, userId } = res.data;
             console.log('CREATING MULTI USER DOC', docId, userId);
             setDocIdAndUserId(stateId, { docId, userId });
+            setLastJoinResult("success");
             if (!isCanceled.current) setCreatingNewMultiUserDoc(false);
         })
     }
@@ -190,6 +197,7 @@ export const useMultiDoc = <T extends MultiDocHookProp>({ stateId }:{ stateId:st
     )
 
     return {
+        lastJoinResult,
         updateDoc,
         updateUserData,
         updating,
