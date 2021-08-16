@@ -26,6 +26,7 @@ export const useMultiDoc = <T extends MultiDocHookProp>({ stateId }:{ stateId:st
 
     const [ updating, setUpdating ] = useState<boolean>(false);
     const [ lastJoinResult, setLastJoinResult ] = useState<""|"failure"|"success">("");
+    const [ lastUpdateResult, setLastUpdateResult ] = useState<""|"failure"|"success">("");
     const [ joiningAsNewUser, setJoiningAsNewUser ] = useState<boolean>(false);
     const [ creatingNewMultiUserDoc, setCreatingNewMultiUserDoc ] = useState<boolean>(false);
     const [ channelState, setChannelState ] = useState<FullChannel<DocData,PublicView,UserData,UserView>>(() => {
@@ -120,17 +121,30 @@ export const useMultiDoc = <T extends MultiDocHookProp>({ stateId }:{ stateId:st
         })
     }
 
+    const updateDocQuietly = (updateData:MultiUserDocAdminUpdate<DocData,PublicView,UserData,UserView>) => {
+        _updateDoc(updateData, true);
+    }
+
     const updateDoc = (updateData:MultiUserDocAdminUpdate<DocData,PublicView,UserData,UserView>) => {
+        _updateDoc(updateData, false);
+    }
+
+    const _updateDoc = (updateData:MultiUserDocAdminUpdate<DocData,PublicView,UserData,UserView>, quietly:boolean) => {
+        if (isCanceled.current) return;
         if (!channelState || !channelState.data?.value || !channelState.data.value.admin) {
+            setLastUpdateResult("failure");
             console.log('cannot admin update');
             return;
         }
         const { docId, userId } = channelState.docIdAndUserId;
         if (!docId || !userId) {
+            setLastUpdateResult("failure");
             console.log('cannot update. missing docId/userId');
             return;
         }
-        setUpdating(true);
+        if (!quietly) setUpdating(true);
+        setLastUpdateResult("");
+        // TODO: this should also have an api sub
         updateMultiDoc({
             app: cfg.app,
             data: updateData,
@@ -139,21 +153,30 @@ export const useMultiDoc = <T extends MultiDocHookProp>({ stateId }:{ stateId:st
             token: cfg.token
         }).subscribe(x => {
             if (x.err) {
-                // TODO: toast on error?
+                if (!isCanceled.current) setLastUpdateResult("failure");
                 console.log('We had trouble updating (admin update)', x.err);
             }
-            if (!isCanceled.current) setUpdating(false);
+            if (!isCanceled.current) {
+                if (!quietly) setUpdating(false);
+                setLastUpdateResult("success");
+            }
         })
     }
 
-    const updateUserData = (userData:Partial<UserData>) => {
+    const updateUserDataQuietly = (userData:Partial<UserData>) => _updateUserData(userData, true);
+    const updateUserData = (userData:Partial<UserData>) => _updateUserData(userData, false);
+
+    const _updateUserData = (userData:Partial<UserData>, quietly:boolean) => {
+        if (isCanceled.current) return;
         const { docId, userId } = getLastDocIdAndUserIdByStateId(stateId) ?? {};
         if (!docId || !userId) {
+            setLastUpdateResult("failure");
             console.log('cannot update. missing docId/userId');
             return;
         }
-        setUpdating(true);
+        if (!quietly) setUpdating(true);
         if (apiSub.current) apiSub.current.unsubscribe();
+        setLastUpdateResult("");
         apiSub.current = updateMultiDocUserData({
             app: cfg.app,
             userData,
@@ -163,9 +186,13 @@ export const useMultiDoc = <T extends MultiDocHookProp>({ stateId }:{ stateId:st
         }).subscribe(x => {
             if (x.err) {
                 // TODO: toast on error?
+                if (!isCanceled.current) setLastUpdateResult("failure");
                 console.log('We had trouble updating', x.err);
             }
-            if (!isCanceled.current) setUpdating(false);
+            if (!isCanceled.current) {
+                if (!quietly) setUpdating(false);
+                setLastUpdateResult("success");
+            }
         })
     }
 
@@ -198,8 +225,11 @@ export const useMultiDoc = <T extends MultiDocHookProp>({ stateId }:{ stateId:st
 
     return {
         lastJoinResult,
+        lastUpdateResult,
         updateDoc,
+        updateDocQuietly,
         updateUserData,
+        updateUserDataQuietly,
         updating,
         logout,
         loading,
