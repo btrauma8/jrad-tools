@@ -5,4 +5,5 @@ export * from './remove-item-at-index';
 export * from './get-item-with-max-prop';
 export * from './to-bool-dict';
 export * from './debounce';
+export * from './shuffle-array';
 export * as convert from './convert';
