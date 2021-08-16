@@ -55,11 +55,15 @@ export const useMultiDoc = <T extends MultiDocHookProp>({ stateId }:{ stateId:st
     // upon first msg, set it to true.
 
     /** clears both docId and userId */
-    const logout = async (partialUserData?:Partial<UserData>) => {
+    const logout = async (partialUserData?:Partial<UserData>, quietly?:boolean) => {
         const { docId, userId } = getLastDocIdAndUserIdByStateId(stateId) ?? {};
         if (partialUserData) {
             // you might wanna update active to false before logging out, etc.
-            await updateUserDataQuietly(partialUserData);
+            if (quietly) {
+                await updateUserDataQuietly(partialUserData);
+            } else {
+                await updateUserData(partialUserData);
+            }            
         }
         setDocIdAndUserId(stateId, {});
         setLastJoinResult("");
