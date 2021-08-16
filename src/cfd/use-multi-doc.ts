@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
 import { Subscription } from 'rxjs';
+import { tap, map } from 'rxjs/operators';
 import { cfg } from './cfg';
 import { joinMultiUserDoc, updateMultiDocUserData, insertMultiUserDoc, isValidMultiDocUser, updateMultiDoc } from './api';
 import { getChannelId } from './get-channel-id';
@@ -124,11 +125,11 @@ export const useMultiDoc = <T extends MultiDocHookProp>({ stateId }:{ stateId:st
     }
 
     const updateDocQuietly = (updateData:MultiUserDocAdminUpdate<DocData,PublicView,UserData,UserView>) => {
-        _updateDoc(updateData, true);
+        return _updateDoc(updateData, true);
     }
 
     const updateDoc = (updateData:MultiUserDocAdminUpdate<DocData,PublicView,UserData,UserView>) => {
-        _updateDoc(updateData, false);
+        return _updateDoc(updateData, false);
     }
 
     const _updateDoc = (updateData:MultiUserDocAdminUpdate<DocData,PublicView,UserData,UserView>, quietly:boolean) => {
@@ -146,23 +147,45 @@ export const useMultiDoc = <T extends MultiDocHookProp>({ stateId }:{ stateId:st
         }
         if (!quietly) setUpdating(true);
         setLastUpdateResult("");
-        // TODO: this should also have an api sub
-        updateMultiDoc({
+
+        const obs = updateMultiDoc({
             app: cfg.app,
             data: updateData,
             docId,
             userId,
             token: cfg.token
-        }).subscribe(x => {
-            if (x.err) {
-                if (!isCanceled.current) setLastUpdateResult("failure");
-                console.log('We had trouble updating (admin update)', x.err);
-            }
-            if (!isCanceled.current) {
-                if (!quietly) setUpdating(false);
-                setLastUpdateResult("success");
-            }
-        })
+        }).pipe(
+            map(x => {
+                if (x.err) {
+                    if (!isCanceled.current) setLastUpdateResult("failure");
+                    console.log('We had trouble updating (admin update)', x.err);
+                    return "failure";
+                }
+                if (!isCanceled.current) {
+                    if (!quietly) setUpdating(false);
+                    setLastUpdateResult("success");
+                }
+                return "success";
+            })
+        )
+        return obs.toPromise();
+
+        // updateMultiDoc({
+        //     app: cfg.app,
+        //     data: updateData,
+        //     docId,
+        //     userId,
+        //     token: cfg.token
+        // }).subscribe(x => {
+        //     if (x.err) {
+        //         if (!isCanceled.current) setLastUpdateResult("failure");
+        //         console.log('We had trouble updating (admin update)', x.err);
+        //     }
+        //     if (!isCanceled.current) {
+        //         if (!quietly) setUpdating(false);
+        //         setLastUpdateResult("success");
+        //     }
+        // })
     }
 
     const updateUserDataQuietly = (userData:Partial<UserData>) => _updateUserData(userData, true);
@@ -184,24 +207,46 @@ export const useMultiDoc = <T extends MultiDocHookProp>({ stateId }:{ stateId:st
         // TODO: i don't think i need to cancel previous api subscription...
         // what if one is quiet? what if two in parallel?
 
-        // apiSub.current = 
-        updateMultiDocUserData({
+        const obs = updateMultiDocUserData({
             app: cfg.app,
             userData,
             docId,
             userId,
             token: cfg.token
-        }).subscribe(x => {
-            if (x.err) {
-                // TODO: toast on error?
-                if (!isCanceled.current) setLastUpdateResult("failure");
-                console.log('We had trouble updating', x.err);
-            }
-            if (!isCanceled.current) {
-                if (!quietly) setUpdating(false);
-                setLastUpdateResult("success");
-            }
-        })
+        }).pipe(
+            map(x => {
+                if (x.err) {
+                    // TODO: toast on error?
+                    if (!isCanceled.current) setLastUpdateResult("failure");
+                    console.log('We had trouble updating', x.err);
+                    return "failure";
+                }
+                if (!isCanceled.current) {
+                    if (!quietly) setUpdating(false);
+                    setLastUpdateResult("success");
+                }
+                return "success";
+            })
+        )
+        return obs.toPromise();
+
+        // updateMultiDocUserData({
+        //     app: cfg.app,
+        //     userData,
+        //     docId,
+        //     userId,
+        //     token: cfg.token
+        // }).subscribe(x => {
+        //     if (x.err) {
+        //         // TODO: toast on error?
+        //         if (!isCanceled.current) setLastUpdateResult("failure");
+        //         console.log('We had trouble updating', x.err);
+        //     }
+        //     if (!isCanceled.current) {
+        //         if (!quietly) setUpdating(false);
+        //         setLastUpdateResult("success");
+        //     }
+        // })
     }
 
     useEffect(() => {        
