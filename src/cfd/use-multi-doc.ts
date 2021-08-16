@@ -47,7 +47,7 @@ export const useMultiDoc = <T extends MultiDocHookProp>({ stateId }:{ stateId:st
     })
     const isCanceled = useRef<boolean>(false);
     // const loading = useRef<boolean>(true);
-    const apiSub = useRef<Subscription>();
+    // const apiSub = useRef<Subscription>();
 
     // We need a way to have "initCheckDone", which says,
     // if we are going to starting listening, set it to false,
@@ -65,8 +65,9 @@ export const useMultiDoc = <T extends MultiDocHookProp>({ stateId }:{ stateId:st
     const joinAsNewUser = (docId:string, initUserData:UserData) => {
         const trimmedUpperDocId = docId.trim().toUpperCase();
         setJoiningAsNewUser(true);
-        if (apiSub.current) apiSub.current.unsubscribe();
-        apiSub.current = joinMultiUserDoc({
+        // if (apiSub.current) apiSub.current.unsubscribe();
+        // apiSub.current = 
+        joinMultiUserDoc({
             app: cfg.app,
             docId: trimmedUpperDocId,
             token: cfg.token,
@@ -95,8 +96,9 @@ export const useMultiDoc = <T extends MultiDocHookProp>({ stateId }:{ stateId:st
 
     const createNewMultiUserDoc = (insertData:MultiUserDocAdminInsert<DocData,PublicView,UserData,UserView>) => {
         setCreatingNewMultiUserDoc(true);
-        if (apiSub.current) apiSub.current.unsubscribe();
-        apiSub.current = insertMultiUserDoc({
+        // if (apiSub.current) apiSub.current.unsubscribe();
+        // apiSub.current = 
+        insertMultiUserDoc({
             app: cfg.app,
             token: cfg.token,
             update: {
@@ -175,9 +177,15 @@ export const useMultiDoc = <T extends MultiDocHookProp>({ stateId }:{ stateId:st
             return;
         }
         if (!quietly) setUpdating(true);
-        if (apiSub.current) apiSub.current.unsubscribe();
+        // Let's no longer do this.
+        // if (apiSub.current) apiSub.current.unsubscribe();
         setLastUpdateResult("");
-        apiSub.current = updateMultiDocUserData({
+
+        // TODO: i don't think i need to cancel previous api subscription...
+        // what if one is quiet? what if two in parallel?
+
+        // apiSub.current = 
+        updateMultiDocUserData({
             app: cfg.app,
             userData,
             docId,
@@ -206,7 +214,7 @@ export const useMultiDoc = <T extends MultiDocHookProp>({ stateId }:{ stateId:st
     useEffect(() => {
         return () => {
             isCanceled.current = true;
-            if (apiSub.current) apiSub.current.unsubscribe();
+            // if (apiSub.current) apiSub.current.unsubscribe();
         }        
     }, [])
 
