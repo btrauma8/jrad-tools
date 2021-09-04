@@ -5,6 +5,11 @@ import { BehaviorSubject } from 'rxjs';
 
 const states = new Map<string, BehaviorSubject<any>>();
 
+export const updateGState = <T>(key:string, fn:(x:T) => T) => {
+    const st = getGState<T>(key);
+    setGState(key, fn(st));
+}
+
 export const mergeGState = <T>(key:string, patch:Partial<T>) => {
     const st = getGState<T>(key);
     setGState(key, {
