@@ -31,13 +31,12 @@ export const setGState = <T>(key:string, x:T) => {
 export const useGState = <T>(key:string, initVal?:T | (() => T)):[T, (x:T) => void] => {
 
     if (!states.has(key)) {
-        if (!initVal) throw new Error('You must ensure useGState provides an initVal prior to calling it without initval');
+        if (initVal === undefined) throw new Error('You must ensure useGState provides an initVal prior to calling it without initval');
         if (typeof initVal === 'function') {
             states.set(key, new BehaviorSubject<T>((initVal as ()=>T)()));
         } else {
             states.set(key, new BehaviorSubject<T>(initVal));
         }
-        
     }
 
     const [ val, _setVal ] = useState<T>(states.get(key)!.getValue());

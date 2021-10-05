@@ -152,6 +152,7 @@ export const usePageSortTable = <Row, ColId extends string>({
     React.useEffect(() => {
         // for now, we will re-sort, even if only current page changed.
         // we can change this later or memoize somehow.
+        
         if (state.page >= totalPages) {
             setPage(0);
             // return;
