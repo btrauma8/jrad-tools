@@ -1,55 +1,57 @@
-import { useState, useEffect } from 'react';
-import { BehaviorSubject } from 'rxjs';
+export const obsolete = true;
 
-// super simple cross-component state util.
+// import { useState, useEffect } from 'react';
+// import { BehaviorSubject } from 'rxjs';
 
-const states = new Map<string, BehaviorSubject<any>>();
+// // super simple cross-component state util.
 
-export const updateGState = <T>(key:string, fn:(x:T) => T) => {
-    const st = getGState<T>(key);
-    setGState(key, fn(st));
-}
+// const states = new Map<string, BehaviorSubject<any>>();
 
-export const mergeGState = <T>(key:string, patch:Partial<T>) => {
-    const st = getGState<T>(key);
-    setGState(key, {
-        ...st,
-        ...patch
-    })
-}
+// export const updateGState = <T>(key:string, fn:(x:T) => T) => {
+//     const st = getGState<T>(key);
+//     setGState(key, fn(st));
+// }
 
-export const getGState = <T>(key:string) => states.get(key)?.getValue() as T;
+// export const mergeGState = <T>(key:string, patch:Partial<T>) => {
+//     const st = getGState<T>(key);
+//     setGState(key, {
+//         ...st,
+//         ...patch
+//     })
+// }
 
-export const setGState = <T>(key:string, x:T) => {
-    if (!states.has(key)) {
-        states.set(key, new BehaviorSubject(x));
-    } else {
-        states.get(key)!.next(x);
-    }
-}
+// export const getGState = <T>(key:string) => states.get(key)?.getValue() as T;
 
-export const useGState = <T>(key:string, initVal?:T | (() => T)):[T, (x:T) => void] => {
+// export const setGState = <T>(key:string, x:T) => {
+//     if (!states.has(key)) {
+//         states.set(key, new BehaviorSubject(x));
+//     } else {
+//         states.get(key)!.next(x);
+//     }
+// }
 
-    if (!states.has(key)) {
-        if (initVal === undefined) throw new Error('You must ensure useGState provides an initVal prior to calling it without initval');
-        if (typeof initVal === 'function') {
-            states.set(key, new BehaviorSubject<T>((initVal as ()=>T)()));
-        } else {
-            states.set(key, new BehaviorSubject<T>(initVal));
-        }
-    }
+// export const useGState = <T>(key:string, initVal?:T | (() => T)):[T, (x:T) => void] => {
 
-    const [ val, _setVal ] = useState<T>(states.get(key)!.getValue());
+//     if (!states.has(key)) {
+//         if (initVal === undefined) throw new Error('You must ensure useGState provides an initVal prior to calling it without initval');
+//         if (typeof initVal === 'function') {
+//             states.set(key, new BehaviorSubject<T>((initVal as ()=>T)()));
+//         } else {
+//             states.set(key, new BehaviorSubject<T>(initVal));
+//         }
+//     }
 
-    const setVal = (x:T) => states.get(key)!.next(x);
+//     const [ val, _setVal ] = useState<T>(states.get(key)!.getValue());
 
-    useEffect(() => {
-        const sub = states.get(key)!.subscribe(x => _setVal(x))
-        return () => sub.unsubscribe();
-    }, [])
+//     const setVal = (x:T) => states.get(key)!.next(x);
 
-    return [
-        val,
-        setVal
-    ]
-}
+//     useEffect(() => {
+//         const sub = states.get(key)!.subscribe(x => _setVal(x))
+//         return () => sub.unsubscribe();
+//     }, [])
+
+//     return [
+//         val,
+//         setVal
+//     ]
+// }
