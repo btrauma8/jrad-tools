@@ -79,7 +79,10 @@ export const useStickyStore = <T>(key:string, initVal?:T | (() => T)):[T, (x:T) 
 
     const [ val, _setVal ] = useState<T>(states.get(key)!.getValue());
 
-    const setVal = (x:T) => states.get(key)!.next(x);
+    const setVal = (x:T) => {
+        setStickyVal(key, x);
+        states.get(key)!.next(x);
+    }
 
     useEffect(() => {
         const sub = states.get(key)!.subscribe(x => _setVal(x))
