@@ -56,13 +56,12 @@ export const useStore = <T>(key:string, initVal?:T | (() => T)):[T, (x:T) => voi
 }
 
 const getInitVal = <T>(key:string, initVal?:T | (() => T)) => {
+    // we want to prefer the sticky value.
+    const stickyVal = getStickyVal<T>(key);
+    if (stickyVal !== undefined) return stickyVal;
+
     if (initVal === undefined) {
-        // check sticky!
-        const stickyVal = getStickyVal<T>(key);
-        if (stickyVal === undefined) {
-            throw new Error('You must ensure useStore provides an initVal prior to calling it like this.');
-        }
-        return stickyVal;
+        throw new Error('You must ensure useStore provides an initVal prior to calling it like this.');
     }
     if (typeof initVal === 'function') {
         return (initVal as ()=>T)();
