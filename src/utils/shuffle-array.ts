@@ -1,4 +1,5 @@
-export const shuffleArray = <T>(seed:string, arr:T[]):T[] => {
+export const shuffleArray = <T>(arr:T[], seed?:number|string):T[] => {
+
 	const rng = new Prando(seed);
 
     const array = arr.slice(); // shallow copy
