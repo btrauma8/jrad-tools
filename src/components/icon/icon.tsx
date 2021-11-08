@@ -40,6 +40,7 @@ import { IconCalendar }  from './icon-calendar';
 import { IconConnect }  from './icon-connect';
 import { IconShare }  from './icon-share';
 import { IconFolder }  from './icon-folder';
+import { IconCopy } from './icon-copy';
 import { getCssArray } from '../get-css';
 import { FgColor, Cursor, SpacingSize }from '../types';
 
@@ -84,7 +85,8 @@ export type IconName =
     "calendar" |
     "connect" |
     "share" |
-    "folder";
+    "folder" |
+    "copy";
 
 export interface NamedIconProps {
     readonly onClick?:(x:any) => any;
@@ -158,6 +160,7 @@ export const Icon = ({ name, spinning, inline, onClick, onMouseDown, title, ...r
         case "connect": return <IconConnect {...props} />;
         case "share": return <IconShare {...props} />;
         case "folder": return <IconFolder {...props} />;
+        case "copy": return <IconCopy {...props} />;
     }
     return null;
 }
