@@ -5,6 +5,7 @@ import { getStickyVal, setStickyVal } from './use-sticky-state';
 // super simple cross-component state util.
 
 const states = new Map<string, BehaviorSubject<any>>();
+const isSticky = new Map<string, boolean>();
 
 export const updateStore = <T>(key:string, fn:(x:T) => T) => {
     const st = getStore<T>(key);
@@ -21,10 +22,12 @@ export const mergeStore = <T>(key:string, patch:Partial<T>) => {
 
 export const getStore = <T>(key:string) => states.get(key)?.getValue() as T;
 
-export const setStore = <T>(key:string, x:T) => {
+export const setStore = <T>(key:string, x:T, sticky?:boolean) => {
     if (!states.has(key)) {
         states.set(key, new BehaviorSubject(x));
+        if (sticky) isSticky.set(key, true);
     } else {
+        if (isSticky.get(key)) setStickyVal(key, x);
         states.get(key)!.next(x);
     }
 }
@@ -74,6 +77,7 @@ export const useStickyStore = <T>(key:string, initVal?:T | (() => T)):[T, (x:T) 
 
     if (!states.has(key)) {
         states.set(key, new BehaviorSubject<T>(getInitVal(key, initVal)));
+        isSticky.set(key, true);
     }
 
     const [ val, _setVal ] = useState<T>(states.get(key)!.getValue());
