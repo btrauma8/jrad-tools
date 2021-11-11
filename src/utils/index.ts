@@ -6,4 +6,5 @@ export * from './debounce';
 export * from './shuffle-array';
 export * from './min-max';
 export * from './array-utils';
+export * from './prando';
 export * as convert from './convert';
