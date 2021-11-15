@@ -7,6 +7,15 @@ import { getStickyVal, setStickyVal } from './use-sticky-state';
 const states = new Map<string, BehaviorSubject<any>>();
 const isSticky = new Map<string, boolean>();
 
+export const clearStore = <T>(key:string) => {
+    const bs = states.get(key);
+    if (bs) {
+        bs.complete(); // signal to listeners that it's over.
+        states.delete(key);
+        isSticky.delete(key);
+    }
+}
+
 export const updateStore = <T>(key:string, fn:(x:T) => T) => {
     const st = getStore<T>(key);
     setStore(key, fn(st));
