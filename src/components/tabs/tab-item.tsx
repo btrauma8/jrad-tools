@@ -60,6 +60,8 @@ export const NavTabItem = ({ item }:NavTabItemProps) => {
 
     if (active) return <ActiveTab label={item.label} />
 
+    // console.log('nav tab item item', item, active, resolvedTo);
+
     return (
         <RouterNavLink to={resolvedTo} caseSensitive={item.caseSensitive} >
             <Tab label={item.label} />

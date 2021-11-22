@@ -7,6 +7,9 @@ export const useResolveTo = (to:string) => {
     // If we determine this "to" is relative (../har or har), use this path
     const resolvedPathIfRelative = useResolvedPath(to).pathname;
 
+    // I think there's a problem here with nested <Routes> when on production...with relative stuff.
+    // look into it later please!
+
     if (relBasePath === '') {
         // NOT within base <Routes />, so, we have to apply our basePath
         // console.log('useResolveTo', to, 'relBasePath', relBasePath, 'resolvedPathIfRelative', resolvedPathIfRelative, 'abs1', getMergedPath(to));
@@ -16,7 +19,8 @@ export const useResolveTo = (to:string) => {
         // ...unless they are giving us an absolute path (starts with /) just let it fly as-is
         if (to.startsWith("/")) {
             // console.log('useResolveTo', to, 'relBasePath', relBasePath, 'resolvedPathIfRelative', resolvedPathIfRelative, 'abs2', getMergedPath(to));
-            return getMergedPath(to);  // absolute path
+            return to;  // absolute path THE BASE ROUTE ON THE ROOT ROUTER WILL TAKE CARE OF EVERYTHING
+            // return getMergedPath(to);  // absolute path
         } else {
             // console.log('useResolveTo', to, 'relBasePath', relBasePath, 'resolvedPathIfRelative', resolvedPathIfRelative, 'rel');
             return resolvedPathIfRelative; // it was already relative. do nothing.
