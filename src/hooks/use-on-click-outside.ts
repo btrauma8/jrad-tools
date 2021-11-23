@@ -1,6 +1,6 @@
 import * as React from 'react';
 
-export const useOnClickOutside = (elem:HTMLElement|null, handler:(evt?:MouseEvent | TouchEvent) => void) => {
+export const useOnClickOutside = (elem:HTMLElement|null, handler:(evt:MouseEvent | TouchEvent) => void) => {
 
     // use layout effect --- very important.
     // if you use normal useEffect, it'll jump in front of things like react dropdown's onchange ... 
@@ -19,7 +19,7 @@ export const useOnClickOutside = (elem:HTMLElement|null, handler:(evt?:MouseEven
             // console.log('we heard this', event);
             handler(event);
         }  
-        document.addEventListener('mousedown', listener);
+        document.addEventListener('mousedown', listener, true); // capturing phase so we can preventDefault it
         document.addEventListener('touchstart', listener);
         return () => {
             document.removeEventListener('mousedown', listener);
