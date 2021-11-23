@@ -1,3 +1,4 @@
+import { CSSProperties } from 'react';
 import { IconName } from '../icon/icon';
 import { InputWidth, TextAlign, InputSize, TextareaHeight, TextareaSize, TextareaWidth } from '../types';
 
@@ -18,7 +19,8 @@ export interface BasicInputProps {
     readonly onBlur?:() => void;
     readonly onChange?:(evt:React.ChangeEvent) => any; // <HTMLInputElement | HTMLTextAreaElement>
     readonly onPaste?: (evt: React.ClipboardEvent) => any; // <HTMLInputElement | HTMLTextAreaElement>
-    readonly onEnter?:() => any;
+    readonly onEnter?:() => void;
+    readonly onEscape?:() => void;
     readonly autoFocus?:boolean;
     readonly isDisabled?:boolean; /* do we need disabled? */
     readonly readOnly?:boolean;
@@ -26,6 +28,7 @@ export interface BasicInputProps {
     readonly align?:TextAlign;
     readonly size?:InputSize;
     readonly nullOnEmpty?:boolean;
+    readonly styles?:CSSProperties;
 }
 
 export interface InputProps extends BasicInputProps {

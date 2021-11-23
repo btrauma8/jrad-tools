@@ -42,6 +42,7 @@ export const BasicInput = React.forwardRef((props:InputProps, ref:React.Ref<HTML
         autoSelect,
         onBlur,
         onChange,
+        onEscape,
         setValue,
         onEnter,
         onPaste,
@@ -51,6 +52,7 @@ export const BasicInput = React.forwardRef((props:InputProps, ref:React.Ref<HTML
         width = "md",
         align,
         size = "md",
+        styles,
         ...rest
     } = props;
 
@@ -137,6 +139,7 @@ export const BasicInput = React.forwardRef((props:InputProps, ref:React.Ref<HTML
 
     const keyDown = (e:React.KeyboardEvent) => {
         if (onEnter && e.key === 'Enter') onEnter();
+        if (onEscape && (e.key === 'Esc' || e.key === 'Escape')) onEscape();
     }
 
     const focus = (e:React.FocusEvent<HTMLInputElement>) => {
@@ -174,6 +177,7 @@ export const BasicInput = React.forwardRef((props:InputProps, ref:React.Ref<HTML
             onChange={change}
             onPaste={onPaste}
             onBlur={blur}
+            style={styles}
             // everything else
             {...rest}
         />
