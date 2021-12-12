@@ -1,8 +1,14 @@
 import { useEffect, useRef, useState } from 'react';
-import { Subscription } from 'rxjs';
 import { tap, map } from 'rxjs/operators';
 import { cfg } from './cfg';
-import { joinMultiUserDoc, updateMultiDocUserData, insertMultiUserDoc, isValidMultiDocUser, updateMultiDoc } from './api';
+import {
+    joinMultiUserDoc,
+    updateMultiDocUserData,
+    insertMultiUserDoc,
+    isValidMultiDocUser,
+    updateMultiDoc,
+    rejoinMultiUserDoc
+} from './api';
 import { getChannelId } from './get-channel-id';
 import { MultiDocHookProp } from './public-types';
 import { MultiUserDocAdminInsert } from './types';
@@ -31,7 +37,9 @@ export const useMultiDoc = <T extends MultiDocHookProp>({ stateId }:{ stateId:st
 
     const [ lastJoinResult, setLastJoinResult ] = useState<""|"failure"|"success">("");
     const [ lastUpdateResult, setLastUpdateResult ] = useState<""|"failure"|"success">("");
-    const [ joiningAsNewUser, setJoiningAsNewUser ] = useState<boolean>(false);
+    const [ joining, setJoining ] = useState<boolean>(false);
+
+
     const [ creatingNewMultiUserDoc, setCreatingNewMultiUserDoc ] = useState<boolean>(false);
     const [ channelState, setChannelState ] = useState<FullChannel<DocData,PublicView,UserData,UserView>>(() => {
         const docIdAndUserId = getLastDocIdAndUserIdByStateId(stateId) ?? {};
@@ -73,9 +81,32 @@ export const useMultiDoc = <T extends MultiDocHookProp>({ stateId }:{ stateId:st
         if (docId) stopListeningToDoc(docId, userId);
     }
 
+
+    const joinAsExistingUser = (docId:string, userId:string) => {
+        const trimmedUpperDocId = docId.trim().toUpperCase();
+        const trimmedUpperUserId = userId.trim().toUpperCase();
+        setJoining(true);
+        rejoinMultiUserDoc({
+            app: cfg.app,
+            docId: trimmedUpperDocId,
+            userId: trimmedUpperUserId
+        }).subscribe(res => {
+            if (res.err || !res.data) {
+                console.log('error re-joining mu-doc');
+                setDocIdAndUserId(stateId, {});
+                setLastJoinResult("failure");
+                if (!isCanceled.current) setJoining(false);
+                return;
+            }
+            setDocIdAndUserId(stateId, { docId: trimmedUpperDocId, userId: trimmedUpperUserId });
+            setLastJoinResult("success");
+            if (!isCanceled.current) setJoining(false);
+        })
+    }
+
     const joinAsNewUser = (docId:string, initUserData:UserData) => {
         const trimmedUpperDocId = docId.trim().toUpperCase();
-        setJoiningAsNewUser(true);
+        setJoining(true);
         // if (apiSub.current) apiSub.current.unsubscribe();
         // apiSub.current = 
         joinMultiUserDoc({
@@ -88,7 +119,7 @@ export const useMultiDoc = <T extends MultiDocHookProp>({ stateId }:{ stateId:st
                 console.log('error joining mu-doc');
                 setDocIdAndUserId(stateId, {});
                 setLastJoinResult("failure");
-                if (!isCanceled.current) setJoiningAsNewUser(false);
+                if (!isCanceled.current) setJoining(false);
                 return;
             }
             const { userId } = res.data;
@@ -96,12 +127,12 @@ export const useMultiDoc = <T extends MultiDocHookProp>({ stateId }:{ stateId:st
                 console.log('error joining mu-doc, missing userId');
                 setDocIdAndUserId(stateId, {});
                 setLastJoinResult("failure");
-                if (!isCanceled.current) setJoiningAsNewUser(false);
+                if (!isCanceled.current) setJoining(false);
                 return;
             }
             setDocIdAndUserId(stateId, { docId: trimmedUpperDocId, userId });
             setLastJoinResult("success");
-            if (!isCanceled.current) setJoiningAsNewUser(false);
+            if (!isCanceled.current) setJoining(false);
         })
     }
 
@@ -292,8 +323,10 @@ export const useMultiDoc = <T extends MultiDocHookProp>({ stateId }:{ stateId:st
         docId,
         userId,
         joinAsNewUser,
-        joiningAsNewUser,
+        joining, // was joining as new. now for existing or new.  connecting to mu doc.
+        joinAsExistingUser,
         createNewMultiUserDoc,
-        creatingNewMultiUserDoc
+        creatingNewMultiUserDoc,
+        
     }
 }
