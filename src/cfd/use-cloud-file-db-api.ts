@@ -2,6 +2,7 @@ import { useEffect, useState, useRef } from 'react';
 import * as api from './api';
 import { Subscription } from 'rxjs';
 import { FoldersAndFilesList } from './public-types';
+import { MultiUserDocUser } from './types';
 
 
 
@@ -81,6 +82,26 @@ export const useCloudFileDbApi = <DocType = {}>({
         })
     }
 
+    const masterInsertNewUserIntoMuDoc = (
+        props:Omit<api.MasterInsertNewUserIntoMuDocProps<MultiUserDocUser>, "token">,
+        onUpdate?:()=>void
+    ) => {
+        // assumes master token
+        if (sub.current) sub.current.unsubscribe();
+        if (canceled.current) return;
+        setUpdating(true);
+        setErr('');
+        sub.current = api.masterInsertNewUserIntoMuDoc({ ...props, token }).subscribe(x => {
+            if (canceled.current) return;
+            setUpdating(false);
+            // We do nothing with this. It's simply updated.
+            if (!x.err && x.data) {
+                if (onUpdate) onUpdate();
+            } else {
+                setErr('Could not insert new user into mu doc');
+            }
+        })
+    }
 
     const masterSetDoc = (props:Omit<api.MasterSetDocProp<DocType>, "token">, onUpdate?:()=>void) => {
         // Master set doc is a little different than set doc: assumes master token and can direct update mu docs.
@@ -314,6 +335,7 @@ export const useCloudFileDbApi = <DocType = {}>({
         masterDeleteDoc,
         masterInsertDoc,
         masterCreateFolder,
+        masterInsertNewUserIntoMuDoc,
         deleting,
         err
     }

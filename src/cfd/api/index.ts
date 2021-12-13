@@ -16,3 +16,4 @@ export * from './master-insert-doc';
 export * from './master-delete-doc';
 export * from './master-create-folder';
 export * from './master-restart';
+export * from './master-insert-new-user-into-mu-doc';
