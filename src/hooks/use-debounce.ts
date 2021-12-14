@@ -13,3 +13,13 @@ export const useDebounce = <T>(value:T, delay:number) => {
 
     return debouncedValue;
 }
+
+
+export const useDebounceFn = <T>(value:T, delay:number, fn:(x:T) => void) => {
+    useEffect(() => {
+        const handler = setTimeout(() => {
+            fn(value);
+        }, delay);
+        return () => clearTimeout(handler);
+    }, [value, delay])
+}
