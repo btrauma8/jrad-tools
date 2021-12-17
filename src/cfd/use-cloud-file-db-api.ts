@@ -83,7 +83,7 @@ export const useCloudFileDbApi = <DocType = {}>({
     }
 
     const masterInsertNewUserIntoMuDoc = (
-        props:Omit<api.MasterInsertNewUserIntoMuDocProps<MultiUserDocUser>, "token">,
+        props:Omit<api.MasterInsertNewUserIntoMuDocProps<MultiUserDocUser<any,any>>, "token">,
         onUpdate?:()=>void
     ) => {
         // assumes master token
