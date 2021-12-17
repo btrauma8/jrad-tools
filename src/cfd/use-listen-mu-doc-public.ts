@@ -40,7 +40,7 @@ export const useListenMuDocPublic = <PublicView>({ app, docId }:UseListenMuDocPu
 
     useEffect(() => {
         // const stateSub = getStateById(docId).subscribe(x => setData(x));
-        const sub = listenToDoc({ docId }).subscribe((x:any) => {
+        const sub = listenToDoc({ app, docId, userId:"_public" }).subscribe((x:any) => {
             if (connecting) setConnecting(false);
             setChannelState(x);
         })
