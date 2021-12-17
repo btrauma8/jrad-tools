@@ -1,28 +1,30 @@
 import { useEffect, useState, useRef } from 'react';
-import { tap } from 'rxjs/operators';
 import { listenToDoc } from './listen-to-doc';
 import { cfg } from './cfg';
-import { mergeDoc } from './api';
 import { getChannelId } from './get-channel-id';
 import { ChannelState } from './public-types';
 
 /*
-    A simple hook for jsons which already exist and don't need creating, just listen & update
+    A simple hook for jsons which already exist and don't need creating, just listen
+
+    NO UPDATE.
+
     NOTE:
             we reuse the docId as stateId !!!
 */
 
-interface UseDocConfig {
+interface UseListenMuDocPublicProps {
+    readonly app?:string;
     readonly docId:string;
 }
-export const useDoc = <DocData>({ docId }:UseDocConfig) => {
+export const useListenMuDocPublic = <PublicView>({ app, docId }:UseListenMuDocPublicProps) => {
 
     if (!cfg.rtc) throw new Error('rtc must exist');
     const rtc = cfg.rtc;
 
-    const channelId = getChannelId({ docId });
+    const channelId = getChannelId({ app, docId, userId:"_public" });
 
-    const [ channelState, setChannelState ] = useState<ChannelState<DocData>>(() => {
+    const [ channelState, setChannelState ] = useState<ChannelState<PublicView>>(() => {
         // init to the value in the bs (if exists)
         const lastVal = rtc.getLastChannelValue(channelId);
         if (lastVal) return lastVal;
@@ -35,14 +37,6 @@ export const useDoc = <DocData>({ docId }:UseDocConfig) => {
         // If the channel does not exist, we are connecting.
         return rtc.doesChannelExist(channelId);
     })
-    const [ updating, setUpdating ] = useState<boolean>(false);
-
-    const update = (nextDoc:any) => {
-        setUpdating(true);
-        mergeDoc({ app: cfg.app, docId, data:nextDoc, token: cfg.token }).pipe(
-            tap(x => setUpdating(false))
-        ).subscribe();
-    }
 
     useEffect(() => {
         // const stateSub = getStateById(docId).subscribe(x => setData(x));
@@ -68,8 +62,6 @@ export const useDoc = <DocData>({ docId }:UseDocConfig) => {
         loading,
         failed,
         connecting,
-        update,
-        updating,
         data:channelState.value,
         status:channelState.status
     }

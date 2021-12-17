@@ -15,7 +15,7 @@ const notConnected:ChannelState<any> = {
 const getJoinObs = <A,B,C,D>(docIdAndUserId:DocIdAndUserId, params?:any) => {
     const { docId, userId } = docIdAndUserId;
     if (!docId || !cfg.rtc) return of(notConnected);
-    const channelId = getChannelId(docId, userId);
+    const channelId = getChannelId({ docId, userId });
     console.log('JOIN THE CHANNEL', channelId);
     return cfg.rtc.joinChannel<MultiDocData<A,B,C,D>>(channelId, params, toMultiDocData);
 }

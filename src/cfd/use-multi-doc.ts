@@ -44,7 +44,7 @@ export const useMultiDoc = <T extends MultiDocHookProp>({ stateId }:{ stateId:st
     const [ channelState, setChannelState ] = useState<FullChannel<DocData,PublicView,UserData,UserView>>(() => {
         const docIdAndUserId = getLastDocIdAndUserIdByStateId(stateId) ?? {};
         if (docIdAndUserId.docId) {
-            const channelId = getChannelId(docIdAndUserId.docId, docIdAndUserId.userId);
+            const channelId = getChannelId({ docId: docIdAndUserId.docId, userId: docIdAndUserId.userId });
             const data = rtc.getLastChannelValue(channelId);
             return {
                 docIdAndUserId,
