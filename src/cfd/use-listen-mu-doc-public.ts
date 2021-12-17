@@ -22,7 +22,7 @@ export const useListenMuDocPublic = <PublicView>({ app, docId }:UseListenMuDocPu
     if (!cfg.rtc) throw new Error('rtc must exist');
     const rtc = cfg.rtc;
 
-    const channelId = getChannelId({ app, docId, userId:"_public" });
+    const channelId = getChannelId({ app, docId: docId.trim().toUpperCase(), userId:"_public" });
 
     const [ channelState, setChannelState ] = useState<ChannelState<PublicView>>(() => {
         // init to the value in the bs (if exists)
@@ -40,7 +40,7 @@ export const useListenMuDocPublic = <PublicView>({ app, docId }:UseListenMuDocPu
 
     useEffect(() => {
         // const stateSub = getStateById(docId).subscribe(x => setData(x));
-        const sub = listenToDoc({ app, docId, userId:"_public" }).subscribe((x:any) => {
+        const sub = listenToDoc({ app, docId: docId.trim().toUpperCase(), userId:"_public" }).subscribe((x:any) => {
             if (connecting) setConnecting(false);
             setChannelState(x);
         })
