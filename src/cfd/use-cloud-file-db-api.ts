@@ -1,9 +1,7 @@
 import { useEffect, useState, useRef } from 'react';
 import * as api from './api';
 import { Subscription } from 'rxjs';
-import { FoldersAndFilesList } from './public-types';
-import { MultiUserDocUser } from './types';
-
+import { FoldersAndFilesList, MultiUserDocUser } from './public-types';
 
 
 const populateParent = (foldersAndFiles:FoldersAndFilesList, parent?:FoldersAndFilesList) => {

@@ -39,20 +39,7 @@ export interface MultiUserDocAdminInsert<A,B,C,D> {
 }
 
 
-export interface MultiUserDocUser<UserData,UserView> {
-    readonly view:UserView;         // only admin user can update this
-    readonly data:UserData;         // only the user can update this section
-    readonly id:string;             // only can be set upon creation
-    readonly admin?:boolean;        // only can be set upon creation
-}
-export interface MultiUserDoc<DocData,PublicView,UserData,UserView> {
-    readonly id:string;
-    readonly publicView:PublicView;
-    readonly data:DocData;
-    readonly users:{[userId:string]:MultiUserDocUser<UserData,UserView>}
-    readonly _ttl?:number;
-    readonly _expireAt?:number;
-}
+
 
 
 
