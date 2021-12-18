@@ -146,12 +146,40 @@ export class RealTimerClient {
     //     this.connect();
     // }
 
+    private tryAgainLater():boolean {
+        // returns true if we are trying again.
+        const msSinceLastAction = Date.now() - this.lastMsgReceived;
+        if (msSinceLastAction < RECONNECT_IF_DISCONNECTED_AND_LAST_ACTION_WITHIN_X_MS && this.retryCount < MAX_RETRIES) {
+            setTimeout(() => {
+                // pause, then, reconnect
+                this.retryCount++;
+                this.connect();
+            }, 300 + (this.retryCount * 100));
+            return true;
+        }
+        return false;
+    }
+
+    private createSocket():WebSocket|null {
+        try {
+            const ws = new WebSocket(this.url);
+            return ws;
+        } catch (err) {
+            console.log('Error on new Weboskcet(this.url)', this.retryCount)
+            this.tryAgainLater();
+            return null;
+        }
+    }
+
     private connect() {
         // YOU ONLY EVER CONNECT ONCE (reconnect in the future version)
         // First time you "listen" to a channel will make you connect.
-        this.ws = new WebSocket(this.url);
+
+        this.ws = this.createSocket();
+        if (!this.ws) return;
+
         this.ws.onopen = (evt:any) => {
-            this.log('>> RT CONN OPENED');
+            this.log('>> RT CONN OPENED: ' + this.retryCount);
             this.retryCount = 0;
             this.ready.next(true);
             // Any channels that already exist...must be join server
@@ -176,21 +204,11 @@ export class RealTimerClient {
             this.log('>> RT CONN CLOSED');
             this.ready.next(false);
             // We should try to re-connect.
-            const msSinceLastAction = Date.now() - this.lastMsgReceived;
-            
-            if (msSinceLastAction < RECONNECT_IF_DISCONNECTED_AND_LAST_ACTION_WITHIN_X_MS && this.retryCount < MAX_RETRIES) {
-                setTimeout(() => {
-                    // pause, then, reconnect
-                    this.retryCount++;
-                    this.connect();
-                }, 300 + (this.retryCount * 100));
-            } else {
+            if (!this.tryAgainLater()) {
                 // It's over. we are done.
                 // tell all channels, we are done.
                 this._incoming.next({ channelId: "*", payload: WS_CLOSED_SYMBOL }) 
             }
-            // this.listeners.clear();
-            // this._incoming.next({ channelId: "*", payload: END_STREAM_SYMBOL })
         }
     }
 
