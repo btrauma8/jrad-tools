@@ -29,6 +29,7 @@ export const initCloudFileDb = ({
     webSocketUrl
 }:InitCloudFileDbProps) => {
     const rtc = webSocketUrl ? new RealTimerClient(webSocketUrl, console.log) : undefined;
+    console.log('RTC', rtc ? 'yes' : 'no');
     cfg = {
         app:defaultApp,
         storagePrefix,
@@ -36,6 +37,7 @@ export const initCloudFileDb = ({
         token: localStorage[storagePrefix + ':token'],
         rtc
     }
+    return cfg;
 }
 
 export const getCloudFileDbToken = () => cfg.token;
