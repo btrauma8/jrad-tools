@@ -65,8 +65,11 @@ export class RealTimerClient {
     public ready:BehaviorSubject<boolean>;
     private lastMsgReceived:number;
     private retryCount:number;
+    private lastSleepCheckTime:number;
+    private tryAgainTimer:any;
 
     constructor(url:string, log?:(...args:string[]) => void) {
+        this.tryAgainTimer = null;
         this.url = url;
         this.lastMsgReceived = 0;
         this.channels = new Map<string, ChannelConfig<any>>();
@@ -122,6 +125,31 @@ export class RealTimerClient {
                 }
             }
         })
+
+
+        this.lastSleepCheckTime = Date.now();
+
+        // THIS IS A "DID WE JUST WAKE FROM SLEEP" HACK. there is no built in way for browsers to know.
+        // every 2 sec check: did 2 sec just pass?
+        // when browsers are put to sleep, wayyyy more time will have passed.
+
+        const TWO_SEC = 2000; // two seconds
+        setInterval(() => {
+            var currentTime = Date.now();
+            if (currentTime > (this.lastSleepCheckTime + TWO_SEC*2)) {
+                // Probably just woke up!
+                // 1. pretend we just recevied a msg
+                console.log('I think we just detected wake-up from sleep...');
+                if (!this.ready.getValue()) {
+                    console.log('...and since we are not ready, let\'s reconnect');
+                    this.retryCount = 0;
+                    this.lastMsgReceived = Date.now(); // pretend we had a msg recently so we really will try...kinda a hack.
+                    this.tryAgainLater();
+                }
+            }
+            this.lastSleepCheckTime = currentTime;
+        }, TWO_SEC);
+
     }
 
     private checkPayload(x:any) {
@@ -130,27 +158,12 @@ export class RealTimerClient {
         return x;
     }
 
-    // private reconnect() {
-    //     if (!RECONNECT) return;
-    //     if (!this.ws) {
-    //         this.connect();
-    //         return;
-    //     }
-    //     const { readyState } = this.ws;
-    //     // four readyState values: CONNECTING, OPEN, CLOSING, CLOSED
-    //     if (readyState === this.ws.OPEN || readyState === this.ws.CONNECTING) {
-    //         this.log('--- be patient, do not reconnect, we are still attempting a connection');
-    //         return;
-    //     }
-    //     this.log('RT ---> Reconnecting ws because we were: ' + readyState);
-    //     this.connect();
-    // }
-
     private tryAgainLater():boolean {
         // returns true if we are trying again.
+        if (this.tryAgainTimer) clearTimeout(this.tryAgainTimer);
         const msSinceLastAction = Date.now() - this.lastMsgReceived;
         if (msSinceLastAction < RECONNECT_IF_DISCONNECTED_AND_LAST_ACTION_WITHIN_X_MS && this.retryCount < MAX_RETRIES) {
-            setTimeout(() => {
+            this.tryAgainTimer = setTimeout(() => {
                 // pause, then, reconnect
                 this.retryCount++;
                 this.connect();
@@ -174,12 +187,12 @@ export class RealTimerClient {
     private connect() {
         // YOU ONLY EVER CONNECT ONCE (reconnect in the future version)
         // First time you "listen" to a channel will make you connect.
-
+        this.log('>> RT TRY CONNECT: (' + this.retryCount + ') ' + Date().toLocaleString());
         this.ws = this.createSocket();
         if (!this.ws) return;
 
         this.ws.onopen = (evt:any) => {
-            this.log('>> RT CONN OPENED: ' + this.retryCount);
+            this.log('>> RT CONN OPENED: (' + this.retryCount + ') ' + Date().toLocaleString());
             this.retryCount = 0;
             this.ready.next(true);
             // Any channels that already exist...must be join server
@@ -189,7 +202,7 @@ export class RealTimerClient {
         }
         this.ws.onmessage = (evt:any) => {
             const obj:any = JSON.parse(evt.data);
-            this.log('>> RT MSG RECEIVED', obj?.channelId);
+            this.log('>> RT MSG RECEIVED', obj?.channelId + ' ' + Date().toLocaleString());
             this.lastMsgReceived = Date.now();
             this._incoming.next({
                 channelId: obj.channelId,
@@ -201,7 +214,7 @@ export class RealTimerClient {
             // do we ever send close ourselves? NO.
             // we close "channels", which are abstract things we invented anyway.
             // emit something to end the subscription
-            this.log('>> RT CONN CLOSED');
+            this.log('>> RT CONN CLOSED: ' + Date().toLocaleString());
             this.ready.next(false);
             // We should try to re-connect.
             if (!this.tryAgainLater()) {
