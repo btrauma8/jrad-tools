@@ -29,7 +29,7 @@ export const initCloudFileDb = ({
     webSocketUrl
 }:InitCloudFileDbProps) => {
     const rtc = webSocketUrl ? new RealTimerClient(webSocketUrl, console.log) : undefined;
-    console.log('RTC', rtc ? 'yes' : 'no');
+    console.log('RTC', webSocketUrl, rtc ? 'yes' : 'no');
     cfg = {
         app:defaultApp,
         storagePrefix,
