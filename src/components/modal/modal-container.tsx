@@ -26,6 +26,18 @@ const getMaxHeight = (cfg:ModalCfg):MaxHeight => {
     return 'modal-lg';
 }
 
+const enforceEscKey = (cfg:ModalCfg|null|undefined) => {
+    if (!cfg) return false;
+    if (cfg.closeOnEsc) return true;
+    if (typeof cfg.closeOnEsc === 'boolean') return false; // they specified FALSE
+    // they did NOT specify, so, depends on static
+    if (cfg.static) {
+        return false; // static modals default to NO, DO NOT CLOSE ON ESC
+    } else {
+        return true; // non-static modals default to YES CLOSE ON ESC
+    }
+}
+
 export const ModalContainer = () => {
     
     const [ cfg, setCfg ] = React.useState<ModalCfg | null>();
@@ -34,6 +46,18 @@ export const ModalContainer = () => {
         const sub = modal$.subscribe(setCfg);
         return () => sub.unsubscribe();
     }, []);
+
+
+    React.useEffect(() => {
+        const keyDown = (x:any) => {
+            if (!enforceEscKey(cfg)) return;
+            if (x.key === 'Escape') modal.close();
+        }
+        window.addEventListener('keydown', keyDown);
+        return () => {
+            window.removeEventListener('keydown', keyDown);
+        }
+    }, [cfg])
 
     const mouseDownInside = (e:React.MouseEvent) => e.stopPropagation();
     const mouseDownOutside = (e:React.MouseEvent) => {

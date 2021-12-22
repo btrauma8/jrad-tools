@@ -10,6 +10,7 @@ export interface ModalCfg {
     readonly fixAtMaxHeight?:boolean;
     readonly maxHeight?: "md" | "lg"; // default to lg
     readonly disableClose?:boolean; // but still show it
+    readonly closeOnEsc?:boolean;
 }
 
 const _modal$ = new BehaviorSubject<ModalCfg | null>(null);
