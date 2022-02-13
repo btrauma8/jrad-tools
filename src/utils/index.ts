@@ -8,3 +8,4 @@ export * from './min-max';
 export * from './array-utils';
 export * from './prando';
 export * as convert from './convert';
+export * from './obj-utils';
