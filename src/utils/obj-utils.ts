@@ -22,20 +22,24 @@ export const deepClone = <T extends object>(target: T): T => {
 
 interface ByDotNotationResult {
     readonly val:any;
+    readonly parent:any;
     readonly found:boolean;
 }
 export const getByDotNotation = (s:string, obj:any):ByDotNotationResult => {
     // make it one million and three times.
     const arr = s.split('.');
     let o = obj;
+    let parent = obj;
     try {
         // if it breaks, it breaks...we catch.
         // tslint:disable-next-line: prefer-for-of
         for (let i=0; i < arr.length; i++) {
+            if (i === arr.length-1) parent = o; // remember the parent
             o = o[arr[i]];
         }
         return {
             found: true,
+            parent,
             val: o
         }
     } catch (err) {
@@ -43,6 +47,7 @@ export const getByDotNotation = (s:string, obj:any):ByDotNotationResult => {
     }
     return {
         val: null,
+        parent: null,
         found: false
     }
 }
