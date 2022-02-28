@@ -23,6 +23,7 @@ export const deepClone = <T extends object>(target: T): T => {
 interface ByDotNotationResult {
     readonly val:any;
     readonly parent:any;
+    readonly parentKey:string;
     readonly found:boolean;
 }
 export const getByDotNotation = (s:string, obj:any):ByDotNotationResult => {
@@ -30,16 +31,21 @@ export const getByDotNotation = (s:string, obj:any):ByDotNotationResult => {
     const arr = s.split('.');
     let o = obj;
     let parent = obj;
+    let parentKey:string = '';
     try {
         // if it breaks, it breaks...we catch.
         // tslint:disable-next-line: prefer-for-of
         for (let i=0; i < arr.length; i++) {
-            if (i === arr.length-1) parent = o; // remember the parent
+            if (i === arr.length-1) {
+                parent = o; // remember the parent
+                parentKey = arr[i];
+            }
             o = o[arr[i]];
         }
         return {
             found: true,
             parent,
+            parentKey,
             val: o
         }
     } catch (err) {
@@ -48,6 +54,7 @@ export const getByDotNotation = (s:string, obj:any):ByDotNotationResult => {
     return {
         val: null,
         parent: null,
+        parentKey: '',
         found: false
     }
 }
