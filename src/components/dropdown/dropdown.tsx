@@ -16,7 +16,7 @@ const getStuff = (size:InputSize, width:InputWidth, disabled:boolean, isMulti:bo
 
     return {
         menuList: (provided, state) => {
-            console.log('provided', provided);
+            // console.log('provided', provided);
             return {
                 ...provided,
                 zIndex: 'var(--z-tooltips)' as any,
