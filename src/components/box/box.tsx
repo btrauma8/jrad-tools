@@ -88,11 +88,13 @@ export const Box = React.forwardRef(({
     onMouseOver,
     onMouseOut,
     style,
+    id,
     ...props
 }:BoxProps, ref:any) => {
     return (
         <div
             ref={ref}
+            id={id}
             className={getCss(props, css)}
             onClick={onClick}
             onContextMenu={onRightClick ? ev => {
