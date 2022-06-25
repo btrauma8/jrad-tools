@@ -41,6 +41,7 @@ export interface BoxProps extends BasicSpacingProps {
 
     readonly pos?:Position;
     readonly z?:ZIndex;
+    readonly id?:string;
 
     readonly bg?:BgColor;
     readonly bgHover?:BgColor;
