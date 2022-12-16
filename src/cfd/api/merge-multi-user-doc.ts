@@ -3,7 +3,7 @@ import { switchMap } from 'rxjs/operators';
 import { fromFetch } from 'rxjs/fetch';
 import { cfg } from '../cfg';
 
-export interface MergeDocProps<T> {
+export interface MergeMultiUserDocProps<T> {
     readonly app:string;
     readonly docId:string;
     readonly token?:string;
@@ -15,12 +15,12 @@ interface MergeDocResult {
     readonly data?:boolean;
 }
 
-export const mergeDoc = <T>({ app, docId, token, data }:MergeDocProps<T>):Observable<MergeDocResult> => {
+export const mergeMultiUserDoc = <T>({ app, docId, token, data }:MergeMultiUserDocProps<T>):Observable<MergeDocResult> => {
     return fromFetch(cfg.apiBaseUrl, {
         method: 'POST',
         cache: 'no-store',
         body: JSON.stringify({
-            action: "MERGE_DOC",
+            action: "UPDATE_MULTI_USER_DOC_AS_ADMIN_USER",
             app,
             docId,
             token,

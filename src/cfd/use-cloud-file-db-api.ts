@@ -63,12 +63,12 @@ export const useCloudFileDbApi = <DocType = {}>({
         })
     }
 
-    const mergeDoc = (props:Omit<api.MergeDocProps<DocType>, "token">, onUpdate?:()=>void) => {
+    const mergeDoc = (props:Omit<api.MergeMultiUserDocProps<DocType>, "token">, onUpdate?:()=>void) => {
         if (sub.current) sub.current.unsubscribe();
         if (canceled.current) return;
         setUpdating(true);
         setErr('');
-        sub.current = api.mergeDoc({ ...props, token }).subscribe(x => {
+        sub.current = api.mergeMultiUserDoc({ ...props, token }).subscribe(x => {
             if (canceled.current) return;
             setUpdating(false);
             // We do nothing with this. It's simply updated.

@@ -2,7 +2,7 @@ import { useEffect, useState, useRef } from 'react';
 import { tap } from 'rxjs/operators';
 import { listenToDoc } from './listen-to-doc';
 import { cfg } from './cfg';
-import { mergeDoc } from './api';
+import { mergeDoc as apiMergeDoc, setDoc as apiSetDoc } from './api';
 import { getChannelId } from './get-channel-id';
 import { ChannelState } from './public-types';
 
@@ -37,9 +37,23 @@ export const useDoc = <DocData>({ docId }:UseDocConfig) => {
     })
     const [ updating, setUpdating ] = useState<boolean>(false);
 
-    const update = (nextDoc:any) => {
+    // const update = (nextDoc:DocData) => {
+    //     setUpdating(true);
+    //     mergeDoc({ app: cfg.app, docId, data:nextDoc, token: cfg.token }).pipe(
+    //         tap(x => setUpdating(false))
+    //     ).subscribe();
+    // }
+
+    const setDoc = (x:DocData) => {
         setUpdating(true);
-        mergeDoc({ app: cfg.app, docId, data:nextDoc, token: cfg.token }).pipe(
+        apiSetDoc({ app: cfg.app, docId, data:x, token: cfg.token ?? "" }).pipe(
+            tap(x => setUpdating(false))
+        ).subscribe();
+    }
+
+    const mergeDoc = (patch:Partial<DocData>) => {
+        setUpdating(true);
+        apiMergeDoc({ app: cfg.app, docId, data:patch, token: cfg.token ?? "" }).pipe(
             tap(x => setUpdating(false))
         ).subscribe();
     }
@@ -68,7 +82,9 @@ export const useDoc = <DocData>({ docId }:UseDocConfig) => {
         loading,
         failed,
         connecting,
-        update,
+        mergeDoc,
+        // update,
+        setDoc,
         updating,
         data:channelState.value,
         status:channelState.status
