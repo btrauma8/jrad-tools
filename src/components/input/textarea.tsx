@@ -22,7 +22,7 @@ export const Textarea = ({
     }
 
     const keyDown = (e:React.KeyboardEvent) => {
-        if (onEnter && e.key === 'Enter') onEnter();
+        if (onEnter && e.key === 'Enter') onEnter(e);
     }
 
     const cssObj = {
