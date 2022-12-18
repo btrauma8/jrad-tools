@@ -46,7 +46,7 @@ export interface TextareaProps {
     readonly setValue?:(val:any) => void;
     readonly onChange?:(evt:React.ChangeEvent) => void;
     readonly onPaste?: (evt: React.ClipboardEvent) => void;
-    readonly onEnter?:(e?:React.KeyboardEvent) => any;
+    readonly onEnter?:(evt:React.KeyboardEvent) => any;
     readonly autoFocus?:boolean;
     readonly isDisabled?:boolean;
     readonly readOnly?:boolean;
