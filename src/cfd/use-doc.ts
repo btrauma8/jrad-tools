@@ -51,13 +51,14 @@ export const useDoc = <DocData>({ docId }:UseDocConfig) => {
         ).subscribe();
     }
 
-    const mergeDoc = (patch:Partial<DocData>) => {
+    const mergeDoc = (patch:Partial<DocData>, nullMeansDelete?:boolean) => {
         setUpdating(true);
         apiMergeDoc({
             app: cfg.app,
             docId,
             data:patch,
             token: cfg.token ?? "",
+            nullMeansDelete
         }).pipe(
             tap(x => setUpdating(false))
         ).subscribe();
