@@ -8,6 +8,7 @@ export interface MergeDocProps<T> {
     readonly docId:string;
     readonly token?:string;
     readonly data:Partial<T>;
+    readonly nullMeansDelete?:boolean;
 }
 
 interface MergeDocResult {
@@ -15,7 +16,7 @@ interface MergeDocResult {
     readonly data?:boolean;
 }
 
-export const mergeDoc = <T>({ app, docId, token, data }:MergeDocProps<T>):Observable<MergeDocResult> => {
+export const mergeDoc = <T>({ app, docId, token, data, nullMeansDelete }:MergeDocProps<T>):Observable<MergeDocResult> => {
     return fromFetch(cfg.apiBaseUrl, {
         method: 'POST',
         cache: 'no-store',
@@ -24,7 +25,8 @@ export const mergeDoc = <T>({ app, docId, token, data }:MergeDocProps<T>):Observ
             app,
             docId,
             token,
-            data: data
+            data,
+            nullMeansDelete
         }),
         headers: { "Content-Type": "application/json" }
     }).pipe(switchMap(x => x.json()))
