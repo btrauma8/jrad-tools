@@ -67,7 +67,7 @@ export const useDoc = <DocData>({ docId, appAndToken }:UseDocConfig) => {
 
     useEffect(() => {
         // const stateSub = getStateById(docId).subscribe(x => setData(x));
-        const sub = listenToDoc({ docId }).subscribe((x:any) => {
+        const sub = listenToDoc({ docId, app }).subscribe((x:any) => {
             if (connecting) setConnecting(false);
             setChannelState(x);
         })
