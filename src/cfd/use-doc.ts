@@ -11,16 +11,23 @@ import { ChannelState } from './public-types';
     NOTE:
             we reuse the docId as stateId !!!
 */
-
+interface AppAndToken {
+    readonly app:string;
+    readonly token:string;
+}
 interface UseDocConfig {
     readonly docId:string;
+    readonly appAndToken?:AppAndToken;
 }
-export const useDoc = <DocData>({ docId }:UseDocConfig) => {
+export const useDoc = <DocData>({ docId, appAndToken }:UseDocConfig) => {
 
     if (!cfg.rtc) throw new Error('rtc must exist');
     const rtc = cfg.rtc;
+    // Take defaults unless they sent us the app+token
+    const app = appAndToken?.app ?? cfg.app;
+    const token = (appAndToken?.token ?? cfg.token) ?? "";
 
-    const channelId = getChannelId({ docId });
+    const channelId = getChannelId({ docId, app });
 
     const [ channelState, setChannelState ] = useState<ChannelState<DocData>>(() => {
         // init to the value in the bs (if exists)
@@ -37,16 +44,10 @@ export const useDoc = <DocData>({ docId }:UseDocConfig) => {
     })
     const [ updating, setUpdating ] = useState<boolean>(false);
 
-    // const update = (nextDoc:DocData) => {
-    //     setUpdating(true);
-    //     mergeDoc({ app: cfg.app, docId, data:nextDoc, token: cfg.token }).pipe(
-    //         tap(x => setUpdating(false))
-    //     ).subscribe();
-    // }
 
     const setDoc = (x:DocData) => {
         setUpdating(true);
-        apiSetDoc({ app: cfg.app, docId, data:x, token: cfg.token ?? "" }).pipe(
+        apiSetDoc({ app, docId, data:x, token }).pipe(
             tap(x => setUpdating(false))
         ).subscribe();
     }
@@ -54,10 +55,10 @@ export const useDoc = <DocData>({ docId }:UseDocConfig) => {
     const mergeDoc = (patch:Partial<DocData>, nullMeansDelete?:boolean) => {
         setUpdating(true);
         apiMergeDoc({
-            app: cfg.app,
+            app,
             docId,
             data:patch,
-            token: cfg.token ?? "",
+            token,
             nullMeansDelete
         }).pipe(
             tap(x => setUpdating(false))
