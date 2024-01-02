@@ -362,6 +362,9 @@ export class RealTimerClient {
         params:any={},
         modifyFn?:(x:any) => Msg|null|undefined
     ):Observable<ChannelState<Msg>> {
+
+        if (!this.ws) this.createNewWebSocket();
+
         const channel = this.channels.get(channelId);
         if (channel) return channel.state.asObservable() as Observable<ChannelState<Msg>>;
         console.log('RT listening for channel', channelId);
