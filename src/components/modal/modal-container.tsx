@@ -1,10 +1,9 @@
 import * as React from 'react';
-import { modal$, ModalCfg } from './modal';
+import { modal$, ModalCfg, closeModal } from './modal';
 import { Box } from '../box/box';
 import { MaxHeight, Height } from '../types';
 import { PortalPlaceholder } from '../portal/index';
 import { ModalMainTitle } from './modal-main-title';
-import { modal } from './index';
 
 const getWidth = (cfg:ModalCfg):string => {
     // MAKE OUR OWN MODAL WIDTHS
@@ -51,7 +50,7 @@ export const ModalContainer = () => {
     React.useEffect(() => {
         const keyDown = (x:any) => {
             if (!enforceEscKey(cfg)) return;
-            if (x.key === 'Escape') modal.close();
+            if (x.key === 'Escape') closeModal();
         }
         window.addEventListener('keydown', keyDown);
         return () => {
@@ -61,7 +60,7 @@ export const ModalContainer = () => {
 
     const mouseDownInside = (e:React.MouseEvent) => e.stopPropagation();
     const mouseDownOutside = (e:React.MouseEvent) => {
-        if (cfg && !cfg.static) modal.close();
+        if (cfg && !cfg.static) closeModal();
     }
 
     if (!cfg) return null;
@@ -87,7 +86,7 @@ export const ModalContainer = () => {
                 flexDir="column"
             >
                 <Box p="1" bg={cfg.applyHeaderBg ? 'header' : undefined}>
-                    <ModalMainTitle onClose={cfg.hideCloseIcon ? undefined : modal.close} pl="1" mb="0" disableClose={cfg.disableClose}>
+                    <ModalMainTitle onClose={cfg.hideCloseIcon ? undefined : closeModal} pl="1" mb="0" disableClose={cfg.disableClose}>
                         { cfg.title }
                         { !cfg.title && <PortalPlaceholder id="$jrad-modal-title" /> }
                     </ModalMainTitle>

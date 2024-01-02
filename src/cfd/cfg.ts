@@ -1,9 +1,10 @@
-import { RealTimerClient } from './rt-client';
+import { RealTimerClient } from "./rt3-client";
 
 export interface CFDCfg {
     readonly app:string;
     readonly storagePrefix:string;
     readonly apiBaseUrl:string;
+    // readonly rtc?:RealTimerClient;
     readonly rtc?:RealTimerClient;
     readonly token?:string;
 }
@@ -28,7 +29,8 @@ export const initCloudFileDb = ({
     apiBaseUrl,
     webSocketUrl
 }:InitCloudFileDbProps) => {
-    const rtc = webSocketUrl ? new RealTimerClient(webSocketUrl, console.log) : undefined;
+    // const rtc = webSocketUrl ? createChanneledWsClient(webSocketUrl) : undefined;
+    const rtc = webSocketUrl ? new RealTimerClient(webSocketUrl) : undefined;
     console.log('RTC', webSocketUrl, rtc ? 'yes' : 'no');
     cfg = {
         app:defaultApp,
